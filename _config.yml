@@ -7,8 +7,10 @@ title: 盛克思的博客
 subtitle: 盛克思前端技术分享
 description: 对于VUE、NodeJS、angular1、webpack、gulp 等相关技术的实战经验分享
 keywords:
+  - javascript
+  - hexo
 author: shengkesi
-language: zh-cn
+language: zh-CN
 timezone:
 
 # URL
@@ -76,7 +78,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: tranquilpeak
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -87,3 +89,22 @@ deploy:
 # Server
 server:
   compress: true # 开启压缩
+# plugins
+# plugins:
+#   - hexo-algoliasearch
+# algolia
+algolia:
+  appId: "HRORNW2LY2"
+  apiKey: "ded44ecb6cb09def6a2a97166489710c"
+  adminApiKey: "6a11a6dad4c8ffe9535d7ce540fb9271"
+  chunkSize: 5000
+  indexName: "blog"
+  fields:
+    - content:strip:truncate,0,500
+    - excerpt:strip
+    - gallery
+    - permalink
+    - photos
+    - slug
+    - tags
+    - title

@@ -125,6 +125,7 @@
     <% if ((config.feed) && (config.feed.path.length)) { %>
         <link rel="alternate" type="application/atom+xml" title="RSS" href="<%- url_for(config.feed.path) %>">
     <% } %>
+    <%- json_ld() %>
     <%- open_graph({
         type: 'blog',
         twitter_id: theme.author.twitter,
@@ -158,18 +159,8 @@
         <% }) %>
     <% } %>
     <!--STYLES-->
-    <%- css('assets/css/style-sxklfps8ywgfyyjcowvnb4gxdgt0zjts3hsguljmv9uqanxjbnitrovtbrek.min.css') %>
+    <%- css('assets/css/style-du2xmrqdqrl2ollgeiw050kpl6l4nbyz7bumjuurjgsxyopifvukebxc9lqe.min.css') %>
     <!--STYLES END-->
     <%- partial('google-analytics') %>
     <%- partial('baidu-analytics') %>
-    <script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?84d4e9f8c9715d9b129c7cd63e1ce2b6";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-        
 </head>

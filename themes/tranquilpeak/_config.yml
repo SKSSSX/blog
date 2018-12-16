@@ -1,7 +1,3 @@
-# Tranquilpeak
-# Version : 1.10.0
-# Author : Louis Barranqueiro
-
 # I STRONGLY recommend you to use a CDN to speed up loading of pages.
 # There is many free CDN like Cloudinary or you can also use indirectly
 # by using services like Google Photos.
@@ -17,7 +13,10 @@
 image_dir: assets/images
 
 
+# ---------------------
 # Sidebar Configuration
+# ---------------------
+
 #    You can add groups of links and links much as you want
 #    You just have to respect the indentation : `groups of links` -> `link` -> `title, link, icon`
 #    E.g:
@@ -27,80 +26,83 @@ image_dir: assets/images
 #             home:             # Name of your link (changeable)
 #                title: Home    # Title of your link displayed
 #                url: /         # URL of the link. If the URL is internal, domain name is not necessary
-#                icon: home     # Name of the font awesome icon class without the `fa-`
-#                               # Go to http://fontawesome.io/icons/ to find class name of icon
+#                icon: home     # CSS class names of the Font Awesome icon
+#                               # Go to https://fontawesome.com/icons?d=gallery&m=free to find icons you want
 sidebar:
     menu:
         home:
             title: global.home
             url: /
-            icon: home
+            icon: fa fa-home
         categories:
             title: global.categories
             url: /all-categories
-            icon: bookmark
+            icon: fa fa-bookmark
         tags:
             title: global.tags
             url: /all-tags
-            icon: tags
+            icon: fa fa-tags
         archives:
             title: global.archives
             url: /all-archives
-            icon: archive
+            icon: fa fa-archive
         search:
             title: global.search
             url: /#search
-            icon: search
+            icon: fa fa-search
             # `open-algolia-search` classes are used to open algolia search modal
             class: open-algolia-search
         about:
             title: global.about
             url: /#about
-            icon: question
+            icon: fa fa-question
     author_links:
-        # github:
-        #     title: global.github
-        #     url: https://github.com/
-        #     icon: github
-        # stack_overflow:
-        #     title: global.stack_overflow
-        #     url: http://stackoverflow.com/users
-        #     icon: stack-overflow
-        # twitter:
-        #     title: global.twitter
-        #     url: https://twitter.com/
-        #     icon: twitter
-        # facebook:
-        #     title: global.facebook
-        #     url: https://facebook.com/
-        #     icon: facebook
-        # google_plus:
-        #     title: global.google_plus
-        #     url: https://plus.google.com/
-        #     icon: google-plus
-        # linked_in:
-        #     title: global.linkedin
-        #     url: https://www.linkedin.com/profile/
-        #     icon: linkedin
-        # mail:
-        #     title: global.mail
-        #     url: mailto:
-        #     icon: envelope-o
-    # rss:
-    #     rss:
-    #         title: global.rss
-    #         url: /atom.xml
-    #         icon: rss
+        github:
+            title: global.github
+            url: https://github.com/
+            icon: fab fa-github
+        stack_overflow:
+            title: global.stack_overflow
+            url: http://stackoverflow.com/users
+            icon: fab fa-stack-overflow
+        twitter:
+            title: global.twitter
+            url: https://twitter.com/
+            icon: fab fa-twitter
+        facebook:
+            title: global.facebook
+            url: https://facebook.com/
+            icon: fab fa-facebook
+        google_plus:
+            title: global.google_plus
+            url: https://plus.google.com/
+            icon: fab fa-google-plus
+        linked_in:
+            title: global.linkedin
+            url: https://www.linkedin.com/profile/
+            icon: fab fa-linkedin
+        mail:
+            title: global.mail
+            url: mailto
+            icon: fa fa-envelope
+    rss:
+        rss:
+            title: global.rss
+            url: /atom.xml
+            icon: fa fa-rss
 
 
+# --------------------
 # Header configuration
+# --------------------
+
 # The link at the right of the header is customizable
 # You can add a link (as an icon) at the right of the header instead of the author's gravatar image or author's picture.
 # By default, author's gravatar or author's picture is displayed if `icon` is empty
 # DON'T edit `header`, `right_link`, `url`, `icon` and `class` variable name
 # E.g to display a shortcut to open algolia search window :
 #     url: /#search
-#     icon: search
+#     icon: "fa fa-search"
 #     class: open-algolia-search
 header:
     right_link:
@@ -109,11 +111,14 @@ header:
         class:
 
 
+# ------
 # Author
+# ------
+
 # Your biography and your job is editable in each languages files in `languages` folder
 author:
-    email: sks1989.com
-    location: 天津
+    email:
+    location:
     # Your profile picture located in folder `source/_images/` (development)
     # or in `source/assets/images/` (production)
     # or you can use an external url
@@ -129,7 +134,10 @@ author:
     google_plus_business:
 
 
+# -------------
 # Customization
+# -------------
+
 # Define the behavior of the sidebar
 # 1: Display extra large sidebar on extra large screen, large sidebar on large screen,
 # medium sidebar on medium screen and header bar on small screen and
@@ -174,14 +182,30 @@ archive_pagination: true
 category_pagination: true
 tag_pagination: true
 
+# ---------------
+# Comment systems
+# ---------------
 
-# Integrated services
-# You can't use Disqus and Duoshuo together
-# then fill the right shortname
 # Your Disqus shortname
 disqus_shortname:
-# Your Duoshuo shortname
-duoshuo_shortname:
+# Your Gitment information
+# Read https://github.com/imsun/gitment#get-started to setup Gitment
+gitment:
+    # Switch
+    enable: false
+    # Your Github ID (Github username):
+    github_id:
+    # The repo to store comments:
+    repo:
+    # Your client ID:
+    client_id:
+    # Your client secret:
+    client_secret:
+
+# -------------------
+# Integrated services
+# -------------------
+
 # Your Google analystics web property ID : UA-XXXXX-X
 google_analytics_id:
 # Your Baidu analystics web property ID : 9505a5af654a2478f93fd6c0ae4f687d
@@ -194,43 +218,60 @@ fb_admin_ids:
 fb_app_id:
 
 
+# ---------------
 # Sharing options
-# Comment and uncomment to enable or disable sharing options
-# If you wanna add a sharing option, read user documentation :
-# Tranquilpeak configuration > Theme configuration > sharing-options
+# ---------------
+
+# Comment or uncomment lines to disable or enable sharing options.
+# If you want to add a sharing option, follow these steps.
+# E.g: with `foo_bar` social network:
+#
+# 1. Add a new option based on the other.
+# ```
 # sharing_options:
-#     facebook:
-#         icon: "fa-facebook-official"
-#         url: "https://www.facebook.com/sharer/sharer.php?u={{post.permalink}}"
-#     twitter:
-#         icon: "fa-twitter"
-#         url: "https://twitter.com/intent/tweet?text={{post.permalink}}"
-#     google_plus:
-#         icon: "fa-google-plus"
-#         url: "https://plus.google.com/share?url={{post.permalink}}"
+#     foo_bar:
+#         icon: "fa-foo_bar"
+#         url: "https://www.foo_bar.com/sharer/sharer.php?u={{post.permalink}}"
+# ```
+#
+# 2. Add a line in the language file that you use (location: `themes/tranquilpeak/languages/`)
+# ```
+# global:
+#     share_on_foo_bar: "Share on Foo Bar"
+# ```
+sharing_options:
+    facebook:
+        icon: "fab fa-facebook"
+        url: "https://www.facebook.com/sharer/sharer.php?u={{post.permalink}}"
+    twitter:
+        icon: "fab fa-twitter"
+        url: "https://twitter.com/intent/tweet?text={{post.permalink}}"
+    google_plus:
+        icon: "fab fa-google-plus"
+        url: "https://plus.google.com/share?url={{post.permalink}}"
     # Asian social networks
-    # weibo:
-    #     title: "Weibo"
-    #     icon: "fa-weibo"
-    #     url: "http://service.weibo.com/share/share.php?&title={{post.permalink}}"
-    # qq:
-    #     title: "QQ"
-    #     icon: "fa-qq"
-    #     url: "http://connect.qq.com/widget/shareqq/index.html?url={{post.permalink}}&title={{post.title}}"
-    # qzone:
-    #     title: "Qzone"
-    #     icon: "fa-star"
-    #     url: "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{post.permalink}}"
-    # renren:
-    #     title: "Renren"
-    #     icon: "fa-renren"
-    #     url: "http://widget.renren.com/dialog/share?resourceUrl={{post.permalink}}"
+#    weibo:
+#        title: "Weibo"
+#        icon: "fab fa-weibo"
+#        url: "http://service.weibo.com/share/share.php?&title={{post.permalink}}"
+#    qq:
+#        title: "QQ"
+#        icon: "fab fa-qq"
+#        url: "http://connect.qq.com/widget/shareqq/index.html?url={{post.permalink}}&title={{post.title}}"
+#    qzone:
+#        title: "Qzone"
+#        icon: "fa fa-star"
+#        url: "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{post.permalink}}"
+#    renren:
+#        title: "Renren"
+#        icon: "fab fa-renren"
+#        url: "http://widget.renren.com/dialog/share?resourceUrl={{post.permalink}}"
     # Russian social networks
-    # vk:
-    #     title: "VK"
-    #     icon: "fa-vk"
-    #     url: "https://vk.com/share.php?url={{post.permalink}}"
-    # odnoklassniki:
-    #     title: "Odnoklassniki"
-    #     icon: "fa-odnoklassniki"
-    #     url: "https://connect.ok.ru/offer?url={{post.permalink}}"
+#    vk:
+#        title: "VK"
+#        icon: "fab fa-vk"
+#        url: "https://vk.com/share.php?url={{post.permalink}}"
+#    odnoklassniki:
+#        title: "Odnoklassniki"
+#        icon: "fab fa-odnoklassniki"
+#        url: "https://connect.ok.ru/offer?url={{post.permalink}}"
