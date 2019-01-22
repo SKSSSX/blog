@@ -32,10 +32,12 @@ vue --version
 {% asset_img VUE-Ecosystem.png %}
 {% endblockquote %}
 
-## 检查自己项目的VUE版本
+## 检查自己项目的VUE版本()
 {% blockquote %}
-请看package.json
-{% asset_img package.json.png %}
+~~请看自己项目根目录中package.json~~
+~~{% asset_img package.json.png %}~~
+感谢大神对我错误的指点，对此问题更正一下，如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
+{% asset_img vue-package.png %}
 {% endblockquote %}
 
 ## 总结
