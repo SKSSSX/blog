@@ -98,5 +98,7 @@ Vue.directive('has', {
 {% endcodeblock %}
 
 {% blockquote %}
+总结：如果当前节点刚刚被建立,还没有被插入到DOM树中,则该节点的parentNode属性会返回null.
+
 此时，完美解决问题。所以在用任何东西之前都熟读文档是很有必要的，免得出现问题像我这样绕一大圈
 {% endblockquote %}
