@@ -29,7 +29,7 @@ tags:
 {% endblockquote %}
 
 ### 具体实现
-{% codeblock App.vue %}
+{% codeblock App.vue lang:html %}
 <template>
     <div id="app" class="app-main">
         <router-view></router-view>
@@ -172,7 +172,7 @@ export default {
 {% endcodeblock %}
 
 ## 代码剖析
-{% codeblock Layout.vue %}
+{% codeblock Layout.vue lang:javascript %}
 export default {
     name: 'layout',
     created () {

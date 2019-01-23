@@ -23,7 +23,7 @@ tags:
 
 ## 用法
 
-{% codeblock %}
+{% codeblock lang:html %}
 <el-table-column label="操作" type="expand" look="查看">
 </el-table-column>
 {% endcodeblock %}

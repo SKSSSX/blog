@@ -12,7 +12,7 @@ copyright:
 在VUE中运用 VUE 指令，发现之前的写法存在问题，刷新页面后报错，先贴代码， 再看报错
 {% endblockquote %}
 
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 权限指令
 Vue.directive('has', {
     bind: function (el, binding) {
@@ -34,7 +34,7 @@ Vue.directive('has', {
 看到这样的报错就顺藤摸瓜到这个VUE指令中，初步猜想是 函数中 el 元素未找到，但实际则是 el 元素的父节点 el.parentNode 未找到，值为 null，于是写如下代码验证自己的猜测
 {% endblockquote %}
 
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 权限指令
 Vue.directive('has', {
     bind: function (el, binding) {
@@ -86,7 +86,7 @@ inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，�
 {% endblockquote %}
 
 ## 更改后的代码为
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 权限指令
 Vue.directive('has', {
     inserted: function (el, binding) {

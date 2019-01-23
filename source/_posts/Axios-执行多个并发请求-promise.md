@@ -21,7 +21,7 @@ tags:
 
 ## 利用js回调嵌套的方式
 
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 异步接口1: 科室列表
 function getDepartmentsList(callback){
     //模拟实现
@@ -72,7 +72,7 @@ Promise的相关知识，请参阅 [Promise的链式调用](https://developer.mo
 
 ### 每个异步接口 返回一个promise对象
 
-{% codeblock %}
+{% codeblock  lang:javascript %}
 // 异步接口1: 科室列表
 function getDepartmentsList(){
     //模拟
@@ -106,7 +106,7 @@ function calOnlinePercent(onlinePerson,RegPerson){
 {% endcodeblock %}
 
 ### 利用promise.all方法保证接口数据成功返回再执行操作
-{% codeblock %}
+{% codeblock lang:javascript %}
 Promise.all([getDepartmentsList(),getLevelList()]).then(function([onlinePerson,RegPerson]){
     //这里写等这两个ajax都成功返回数据才执行的业务逻辑
      calOnlinePercent(onlinePerson,RegPerson).then(function(percent){
@@ -119,7 +119,7 @@ Promise.all([getDepartmentsList(),getLevelList()]).then(function([onlinePerson,R
 
 ### 每个异步接口 返回一个axios对象
 
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 异步接口1: 科室列表
 getDepartmentsList () {
     return axios.get(process.env.BASE_API_WAP + 'category/2');
@@ -132,7 +132,7 @@ getLevelList () {
 
 ### 利用axios.all方法执行多个并发请求
 
-{% codeblock %}
+{% codeblock lang:javascript %}
 // 过滤数据函数
 filterData (targetArray) {
     targetArray.forEach(item => {
