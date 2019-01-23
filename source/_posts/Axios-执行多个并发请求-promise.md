@@ -49,7 +49,7 @@ function calOnlinePercent(onlinePerson,RegPerson,callback){
     },Math.random()*1000)
 }
 {% endcodeblock %}
-
+<!-- more --> 
 ## 利用es6的promise解决回调地狱问题
 
 ### 《ES6标准入门》对Promise的描述

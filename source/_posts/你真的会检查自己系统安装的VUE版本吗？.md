@@ -23,21 +23,21 @@ vue --version
 
 ### 如下图
 {% blockquote %}
-{% asset_img vue-cli.png %}
+![检查vue-cli版本](vue-cli.png "检查vue-cli版本")
 {% endblockquote %}
-
+<!-- more --> 
 ## 其实你们大错特错
 {% blockquote %}
 这哪里是检查VUE版本的，那是vue-cli的版本，vue-cli是搭vue框架的脚手架，是vue的生态环境之一
-{% asset_img VUE-Ecosystem.png %}
+![vue的生态环境](VUE-Ecosystem.png "vue的生态环境")
 {% endblockquote %}
 
-## 检查自己项目的VUE版本()
+## 检查自己项目的VUE版本
 {% blockquote %}
 ~~请看自己项目根目录中package.json~~
-~~{% asset_img package.json.png %}~~
+![项目根目录中的package.json](package.json.png "项目根目录中的package.json")
 感谢大神对我错误的指点，对此问题更正一下，如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
-{% asset_img vue-package.png %}
+![寻根溯源的找到VUE版本](vue-package.png "寻根溯源的找到VUE版本")
 {% endblockquote %}
 
 ## 总结

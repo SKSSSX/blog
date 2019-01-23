@@ -11,7 +11,7 @@ tags:
 添加了了一个属性 look, 更改了展开行中的图标 ＞，如下图
 {% endblockquote %}
 
-{% asset_img element_table_expand.png %}
+![element-ui 表格展开行默认效果](element_table_expand.png "element-ui 表格展开行默认效果")
 
 {% blockquote %}
 表头 label 属性，源码本身就支持，用就可以了
@@ -19,7 +19,7 @@ tags:
 改变了之后，变为文字，如下图
 {% endblockquote %}
 
-{% asset_img elment_table_expand_edit.jpg %}
+![element-ui 表格展开行修改后的效果](elment_table_expand_edit.jpg "element-ui 表格展开行修改后的效果")
 
 ## 用法
 

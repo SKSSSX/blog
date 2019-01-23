@@ -25,9 +25,9 @@ Vue.directive('has', {
 
 {% blockquote %}
 只要刷新页面会出现如下问题：
-{% asset_img null-error.png %}
+![刷新页面报错展示](null-error.png "刷新页面报错")
 {% endblockquote %}
-
+<!-- more --> 
 ## 猜测并寻找出现报错的原因
 
 {% blockquote %}
@@ -51,7 +51,8 @@ Vue.directive('has', {
 
 {% blockquote %}
 结果是这样的：
-{% asset_img test.png %}
+![测试结果展示](test.png "测试结果")
+
 进而验证了我的猜测
 {% endblockquote %}
 
