@@ -2,7 +2,7 @@
 title: VUE的权限控制
 date: 2018-08-22 15:17:06
 categories:
-- VUE
+- Vue
 tags:
 - vue
 - permission

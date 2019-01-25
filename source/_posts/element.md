@@ -1,7 +1,10 @@
 ---
 title: element-ui table展开行，设置type="expand"，如何添加表头？如何去掉展开按钮并设置成文字？
 date: 2018-09-27 23:08:37
+categories:
+- Element-UI
 tags:
+- element-ui
 ---
 
 ## 解决方案

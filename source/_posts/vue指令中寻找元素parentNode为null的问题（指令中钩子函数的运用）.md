@@ -4,7 +4,7 @@ date: 2019-01-23 12:20:59
 categories:
 - Vue
 tags:
-- Vue 指令
+- vue
 copyright:
 # photos: 
 #     - "https://www.shengkesi.cn/2019/01/23/vue指令中寻找元素parentNode为null的问题（指令中钩子函数的运用）/null-error.png"
