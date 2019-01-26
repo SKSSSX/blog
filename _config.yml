@@ -119,3 +119,7 @@ feed:
   content_limit_delim: ' '
   order_by: -date
   icon: icon.png
+
+# 博客加密
+encrypt:
+  enable: true

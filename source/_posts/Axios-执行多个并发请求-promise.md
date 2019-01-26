@@ -9,6 +9,7 @@ tags:
 - axios
 - ES6
 - 回调地狱
+copyright: true
 ---
 ## 引语
 

@@ -5,6 +5,7 @@ categories:
 - Vue
 tags:
 - vue
+copyright: true
 ---
 ## 引语
 {% blockquote %}
@@ -36,7 +37,7 @@ vue --version
 {% blockquote %}
 ~~请看自己项目根目录中package.json~~
 ![项目根目录中的package.json](package.json.png "项目根目录中的package.json")
-感谢大神对我错误的指点，对此问题更正一下，如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
+对此问题更正一下，如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
 ![寻根溯源的找到VUE版本](vue-package.png "寻根溯源的找到VUE版本")
 {% endblockquote %}
 

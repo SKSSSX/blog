@@ -6,6 +6,7 @@ categories:
 tags:
 - vue
 - permission
+copyright: true
 ---
 
 ## 概述
