@@ -5,7 +5,7 @@ db.json
 node_modules/
 public/
 .deploy*/
-'**/themes/**/node_modules/**'
-'**/themes/**/node_modules'
-'**/themes/**/.git'
-'**/themes/**/.git/**'
+themes/**/node_modules/**
+themes/**/node_modules
+themes/**/.git
+themes/**/.git/**
