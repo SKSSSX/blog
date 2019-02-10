@@ -1,5 +1,5 @@
 ---
-layout: '[draft]'
+layout: '[post]'
 title: Hexo 插入图片
 tags:
   - hexo
