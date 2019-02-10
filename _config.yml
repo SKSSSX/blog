@@ -4,7 +4,7 @@
 
 # Site
 title: 盛克思的博客
-subtitle: 盛克思前端技术分享
+subtitle: 一命二运三本事
 description: 对于VUE、NodeJS、angular1、webpack、gulp 等相关技术的实战经验分享
 keywords:
   - javascript
@@ -84,7 +84,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:SKSSSX/SKSSSX.github.io.git
+  #repository: git@github.com:SKSSSX/SKSSSX.github.io.git
+  repository: git@47.244.17.148:/var/repo/blog.git
   branch: master
 # Server
 server:

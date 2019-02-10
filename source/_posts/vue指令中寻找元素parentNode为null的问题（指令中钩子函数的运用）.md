@@ -6,7 +6,7 @@ categories:
 tags:
 - vue
 toc: true
-password: abc123
+# password: abc123
 copyright: true
 # photos: 
 #     - "https://www.shengkesi.cn/2019/01/23/vue指令中寻找元素parentNode为null的问题（指令中钩子函数的运用）/null-error.png"
