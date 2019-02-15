@@ -1,12 +1,14 @@
 ---
 title: VUE的权限控制
-date: 2018-08-22 15:17:06
 categories:
-- Vue
+  - Vue
 tags:
-- vue
-- permission
+  - vue
+  - permission
 copyright: true
+abbrlink: 58890
+date: 2018-08-22 15:17:06
+keywords:
 ---
 
 ## 概述

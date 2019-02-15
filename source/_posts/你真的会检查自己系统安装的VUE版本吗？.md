@@ -1,11 +1,13 @@
 ---
 title: 你真的会检查自己系统安装的VUE版本吗？
-date: 2018-12-17 13:55:52
 categories:
-- Vue
+  - Vue
 tags:
-- vue
+  - vue
 copyright: true
+abbrlink: 56893
+date: 2018-12-17 13:55:52
+keywords:
 ---
 ## 引语
 {% blockquote %}

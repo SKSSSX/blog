@@ -1,11 +1,12 @@
 ---
-layout: '[post]'
 title: Hexo 插入图片
 tags:
   - hexo
 categories:
   - Hexo
+abbrlink: 4746
 date: 2019-02-09 14:13:18
+keywords:
 ---
 ### 引言
 {% blockquote %}

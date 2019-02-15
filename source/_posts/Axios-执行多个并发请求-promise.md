@@ -1,15 +1,17 @@
 ---
 title: Axios 执行多个并发请求(使用Promise解决多层异步调用)
 subtitle: 使用Promise解决多层异步调用
-date: 2018-12-18 08:21:43
 categories:
-- Promise
+  - Promise
 tags:
-- promise
-- axios
-- ES6
-- 回调地狱
+  - promise
+  - axios
+  - ES6
+  - 回调地狱
 copyright: true
+abbrlink: 39187
+date: 2018-12-18 08:21:43
+keywords:
 ---
 ## 引语
 

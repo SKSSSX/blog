@@ -1,11 +1,12 @@
 ---
-layout: '[post]'
 title: Hexo-主题文件夹上传不到自己的github上
 tags:
   - hexo
 categories:
   - Hexo
+abbrlink: 12507
 date: 2019-02-10 14:44:49
+keywords:
 ---
 
 ### 引言

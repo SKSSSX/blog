@@ -1,3 +1,9 @@
+{% if theme.google_site_verification %}
+<meta name="google-site-verification" content="566vKidEd3rhgol6_eANvniNU1LISEec0iyQZxjSE10" />
+{% endif %}
+{% if theme.baidu_site_verification %}
+<meta name="baidu-site-verification" content="gxXWBW73j2"/>
+{% endif %}
 <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>

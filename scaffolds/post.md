@@ -1,6 +1,9 @@
 ---
 title: {{ title }}
-date: {{ date }}
+subtitle: 
+categories:
 tags:
+keywords: 
 copyright: true
+date: {{ date }}
 ---

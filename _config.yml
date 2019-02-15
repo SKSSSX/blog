@@ -9,6 +9,13 @@ description: 对于VUE、NodeJS、angular1、webpack、gulp 等相关技术的�
 keywords:
   - javascript
   - hexo
+  - ES6
+  - VUE
+  - axios
+  - promise
+  - permission
+  - 回调地狱
+  - Element-UI
 author: shengkesi
 language: zh-CN
 timezone:
@@ -18,6 +25,11 @@ timezone:
 url: https://www.shengkesi.cn
 root: /
 permalink: :year/:month/:day/:title/
+# permalink: /articles/:title/
+# permalink: /archives/:abbrlink/
+# abbrlink:
+#   alg: crc32  # 算法：crc16(default) and crc32
+#   rep: hex    # 进制：dec(default) and hex
 permalink_defaults:
 
 # Directory
@@ -83,10 +95,11 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
+  - type: git
   #repository: git@github.com:SKSSSX/SKSSSX.github.io.git
-  repository: git@47.244.17.148:/var/repo/blog.git
-  branch: master
+    repository: git@47.244.17.148:/var/repo/blog.git
+    branch: master
+  - type: baidu_url_submitter
 # Server
 server:
   compress: true # 开启压缩
@@ -124,3 +137,22 @@ feed:
 # 博客加密
 encrypt:
   enable: true
+
+# 站点地图
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+  path: baidusitemap.xml
+
+# nofollow插件
+nofollow:
+    enable: true
+    exclude:
+    - www.shengkesi.cn
+
+# 百度链接自动提交
+baidu_url_submit:
+  count: 6 # 提交最新的链接数量
+  host: http://www.shengkesi.cn # 在百度站长平台中注册的域名
+  token: iRQU049tuKMtGUma # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
+  path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里
