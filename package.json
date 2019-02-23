@@ -6,7 +6,8 @@
     "version": "3.7.1"
   },
   "scripts": {
-    "dev": "hexo s --debug -p 3111 -o"
+    "dev": "hexo s --debug -p 3111 -o",
+    "start": "hexo clean && hexo generate && hexo algolia && hexo deploy && npm run dev"
   },
   "dependencies": {
     "hexo": "^3.7.0",
