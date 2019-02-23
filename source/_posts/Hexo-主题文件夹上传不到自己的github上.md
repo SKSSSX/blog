@@ -33,7 +33,7 @@ keywords:
 ### 真正的解决办法
 {% blockquote %}
 经过多番探索，终于找到了症结，先来说如何解决
-- 删除掉主题文件夹下的.git和.github文件夹
+- 删除<div style="color: red">除了项目根目录以外的</div>任何位置的<strong>.git文件夹, .gitignore(或者编辑这个文件夹，删除那些你想上传但是被忽略的文件或文件夹)和.github文件夹</strong>
 操作完成之后，用SourceTree还是看不到需要上传的主题文件在“未暂存文件”一栏中，不要失望接着往下看
 - 还要删除掉 SourceTree 中的 <strong>主题 子模块 </strong> ，如下图：
 ![SourceTree子模块](submodule.png "SourceTree子模块")

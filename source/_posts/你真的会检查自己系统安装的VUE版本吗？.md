@@ -37,9 +37,9 @@ vue --version
 
 ## 检查自己项目的VUE版本
 {% blockquote %}
-~~请看自己项目根目录中package.json~~
+项目根目录下 package.json 中的VUE版本为安装依赖的最低支持版本，例如: "VUE": "^2.5.13", 要想项目运行正常，安装的VUE版本最低为 2.5.13
 ![项目根目录中的package.json](package.json.png "项目根目录中的package.json")
-对此问题更正一下，如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
+如果要检查VUE版本，需要到node_modules中vue文件夹下的package.json中查找，或者是任意一个文件的头部注释
 ![寻根溯源的找到VUE版本](vue-package.png "寻根溯源的找到VUE版本")
 {% endblockquote %}
 
