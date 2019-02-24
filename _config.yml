@@ -152,3 +152,28 @@ baidu_url_submit:
   host: http://www.shengkesi.cn # 在百度站长平台中注册的域名
   token: iRQU049tuKMtGUma # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
   path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里
+
+# Post wordcount display settings
+# Dependencies: https://github.com/willin/hexo-wordcount
+post_wordcount:
+  item_text: true
+  wordcount: true
+  min2read: true
+
+# 为博客加上萌萌的宠物
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-wanko
+  display:
+    position: right
+    width: 150
+    height: 300
+  mobile:
+    show: true

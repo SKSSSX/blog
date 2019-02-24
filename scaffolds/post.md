@@ -1,9 +1,12 @@
 ---
 title: {{ title }}
-subtitle: 
+subtitle: {{ title }}
 categories:
-tags:
-keywords: 
+ - JavaScript
+tags: 
+ - JavaScript
+keywords: JavaScript
 copyright: true
 date: {{ date }}
+top: false
 ---

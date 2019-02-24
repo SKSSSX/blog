@@ -228,6 +228,16 @@
             {% if theme.post_meta.item_text %} {{__('post.views') + __('symbol.colon') }} {% endif %}
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
+            <span class="post-meta-divider">|</span>
+            <span title="{{ __('post.wordcount') }}">
+              <span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>
+              字数统计： {{ wordcount(post.content) }} 字
+            </span>
+            <span class="post-meta-divider">|</span>
+            <span title="{{ __('post.min2read') }}">
+              <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i></span>
+              阅读时长：≈ {{ min2read(post.content) }} 分钟
+            </span>
           {% endif %}
 
           {% if config.symbols_count_time.symbols or config.symbols_count_time.time %}
@@ -271,7 +281,6 @@
                 #}{{ post.description }}{#
             #}</div>
           {% endif %}
-
         </div>
       </header>
     {% endif %}
