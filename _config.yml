@@ -155,7 +155,7 @@ baidu_url_submit:
 
 # 为博客加上萌萌的宠物
 live2d:
-  enable: true
+  enable: false
   scriptFrom: local
   pluginRootPath: live2dw/
   pluginJsPath: lib/
