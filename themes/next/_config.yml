@@ -279,7 +279,7 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
+  enable: true
   length: 150
 
 # Read more button
@@ -602,14 +602,14 @@ needmoreshare2:
       iconStyle: box
       boxForm: horizontal
       position: bottomCenter
-      networks: Wechat,Twitter,Facebook
+      networks: Twitter,Facebook
   float:
     enable: true
     options:
       iconStyle: box
       boxForm: horizontal
       position: middleRight
-      networks: Wechat,Twitter,Facebook
+      networks: Twitter,Facebook
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters
@@ -1077,21 +1077,3 @@ post_wordcount:
   item_text: true
   wordcount: true
   min2read: true
-
-# 为博客加上萌萌的宠物
-live2d:
-  enable: true
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  tagMode: false
-  log: false
-  model:
-    use: live2d-widget-model-wanko
-  display:
-    position: right
-    width: 150
-    height: 300
-  mobile:
-    show: true

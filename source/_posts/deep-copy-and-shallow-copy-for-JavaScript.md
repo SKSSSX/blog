@@ -10,6 +10,7 @@ copyright: true
 date: 2019-02-24 09:21:09
 ---
 {% blockquote %}
+### 原文链接
 作者：ziwei3749
 https://segmentfault.com/a/1190000012828382
 {% endblockquote %}
@@ -88,7 +89,6 @@ var obj1 = {
 {% note primary %} 
 浅拷贝是什么样子的 (我们暂时不管具体如何实现,因为下面会单讲)
 {% endnote %}
-
 调用shallowCopy()后,obj2拷贝obj1所有的属性。但是obj2.arr和obj1.arr是不同的引用,指向同一个内存空间
 
 {% codeblock %}
@@ -190,8 +190,8 @@ function shallowCopy(source, target = {}) {
 function deepCopy(source, target = {}) {
     var key;
     for (key in source) {
-        if (source.hasOwnProperty(key)) {    // 意思就是__proto__上面的属性,我不拷贝
-            if (typeof(source[key]) === "object") {     // 如果这一项是object类型,就递归调用deepCopy
+        if (source.hasOwnProperty(key)) { // 意思就是__proto__上面的属性,我不拷贝
+            if (typeof(source[key]) === "object") { // 如果这一项是object类型,就递归调用deepCopy
                 target[key] = Array.isArray(source[key]) ? [] : {};
                 deepCopy(source[key], target[key]);
             } else {                            // 如果不是object类型,就直接赋值拷贝

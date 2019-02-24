@@ -220,7 +220,7 @@
              </span>
           {% endif %}
 
-          {% if not is_index and theme.busuanzi_count.enable and theme.busuanzi_count.post_views %}
+          {% if theme.busuanzi_count.enable and theme.busuanzi_count.post_views %}
             <span class="post-meta-divider">|</span>
             <span class="post-meta-item-icon"
             {% if not theme.post_meta.item_text %} title="{{ __('post.views') }}" {% endif %}>
