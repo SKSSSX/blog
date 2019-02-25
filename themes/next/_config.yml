@@ -581,7 +581,7 @@ gitalk:
 ##  type: button
 
 # addthis Share, see: https://www.addthis.com
-#add_this_id:
+add_this_id: ra-5c7375845249a74d
 
 # NeedMoreShare2
 # Dependencies: https://github.com/theme-next/theme-next-needmoreshare2
@@ -595,7 +595,7 @@ gitalk:
 #           Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,
 #           Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
-  enable: true
+  enable: false
   postbottom:
     enable: true
     options:
