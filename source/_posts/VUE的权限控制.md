@@ -33,6 +33,16 @@ keywords:
 {% endblockquote %}
 
 ### 具体实现
+{% blockquote %}
+
+{% centerquote %}
+<h3 style="padding-top: 0">授之以鱼不如授之以渔</h3>
+{% endcenterquote %}
+
+本着这个原则，代码的主要设计思想是：
+1. 将接口所得数据（菜单树形结构）存至本地(sessionStorage);
+2. 每次刷新页面重新调取接口，更新数据到本地(sessionStorage)，保证设置权限的实时效应;
+{% endblockquote %}
 {% codeblock App.vue lang:html %}
 <template>
     <div id="app" class="app-main">

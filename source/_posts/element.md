@@ -38,5 +38,5 @@ keywords:
 
 {% blockquote %}
 将修改后的 lib 文件夹 替换掉你的 element-ui 中的 lib 文件夹, 路径：node-modules/element-ui
-[点击下载](/download/xx.xls")
+[点击下载](download/element-ui.zip)
 {% endblockquote %}

@@ -26,25 +26,25 @@ keywords:
 // 异步接口1: 科室列表
 function getDepartmentsList(callback){
     //模拟实现
-    var onlinePerson = Math.ceil(Math.random()*1000)
+    var departmentList = Math.ceil(Math.random()*1000)
     setTimeout(function(){
-        callback(onlinePerson)
+        callback(departmentList)
     },Math.random()*1000)
 }
 
 // 异步接口2: 级别列表
 function getLevelList(callback){
     //模拟实现
-    var RegPerson = Math.ceil(Math.random()*1000)+1000
+    var levelList = Math.ceil(Math.random()*1000)+1000
     setTimeout(function(){
-        callback(RegPerson)
+        callback(levelList)
     },Math.random()*1000)
 }
 
 //异步接口，列表中科室和级别码转换成对应的中文，需要前两个接口的数据
-function calOnlinePercent(onlinePerson,RegPerson,callback){
+function registrationList(departmentList,levelList,callback){
     //模拟实现
-    var percent = Math.ceil(onlinePerson/RegPerson*100)
+    var percent = Math.ceil(departmentList/levelList*100)
     setTimeout(function(){
         callback(percent)
     },Math.random()*1000)
@@ -78,9 +78,9 @@ Promise的相关知识，请参阅 [Promise的链式调用](https://developer.mo
 function getDepartmentsList(){
     //模拟
     return new Promise(function(resolve,reject){
-        var onlinePerson = Math.ceil(Math.random()*1000)
+        var departmentList = Math.ceil(Math.random()*1000)
         setTimeout(function(){
-            resolve(onlinePerson)
+            resolve(departmentList)
         },Math.random()*1000)
     })
    
@@ -88,17 +88,17 @@ function getDepartmentsList(){
 // 异步接口2: 级别列表
 function getLevelList(){
     return new Promise(function(resolve,reject){
-            var RegPerson = Math.ceil(Math.random()*1000)+1000
-            setTimeout(function(){
-                resolve(RegPerson)
-            },Math.random()*1000)
-            })
+        var levelList = Math.ceil(Math.random()*1000)+1000
+        setTimeout(function(){
+            resolve(levelList)
+        },Math.random()*1000)
+    })
   
 }
 // 异步接口, 列表中科室和级别码转换成对应的中文，需要前两个接口的数据
-function calOnlinePercent(onlinePerson,RegPerson){
+function registrationList(departmentList,levelList){
     return new Promise(function(resolve,reject){ 
-        var percent = Math.ceil(onlinePerson/RegPerson*100)
+        var percent = Math.ceil(departmentList/levelList*100)
         setTimeout(function(){
             resolve(percent)
         },Math.random()*1000)
@@ -108,9 +108,9 @@ function calOnlinePercent(onlinePerson,RegPerson){
 
 ### 利用promise.all方法保证接口数据成功返回再执行操作
 {% codeblock lang:javascript %}
-Promise.all([getDepartmentsList(),getLevelList()]).then(function([onlinePerson,RegPerson]){
+Promise.all([getDepartmentsList(),getLevelList()]).then(function([departmentList,levelList]){
     //这里写等这两个ajax都成功返回数据才执行的业务逻辑
-     calOnlinePercent(onlinePerson,RegPerson).then(function(percent){
+     registrationList(departmentList,levelList).then(function(percent){
         console.log(percent)
      })
 })
@@ -137,9 +137,6 @@ getLevelList () {
 // 过滤数据函数
 filterData (targetArray) {
     targetArray.forEach(item => {
-        if (typeof item.meetingTime === 'number') {
-            item.meetingTime = util.timestampFilter(item.meetingTime);
-        }
         for (let key in this.departmentsList) {
             if (Number(item.departments) === this.departmentsList[key].id) {
                 item.departments = this.departmentsList[key].name;
