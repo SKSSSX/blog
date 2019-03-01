@@ -25,5 +25,21 @@
         visitor: {{ theme.valine.visitor }},
         avatar_cdn:'{{ theme.valine.avatar_cdn }}'
     });
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('vsubmit')) {
+            const email = document.querySelector('input[type=email]');
+            const nick = document.querySelector('input[name=nick]');
+            if (!email.value || !nick.value) {
+                const str = `<div class="valert txt-center"><div class="vtext">请填写昵称和邮箱！</div></div>`;
+                const vmark = document.querySelector('.vmark');
+                vmark.innerHTML = str;
+                vmark.style.display = 'block';
+                setTimeout(function() {
+                    vmark.style.display = 'none';
+                    vmark.innerHTML = '';
+                }, 2500);
+            }
+        }
+    });
   </script>
 {% endif %}
