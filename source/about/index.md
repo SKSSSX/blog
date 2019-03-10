@@ -170,6 +170,9 @@ module.exports = {
 根据我以往的经验，把这些依赖进行了拆解，分成开发依赖（devDependencies，其中大部分是开发依赖）和 生产依赖 （dependencies）
 最新的 package.json 相关配置，请参考我的 github [jelly3](https://github.com/SKSSSX/jelly3/blob/master/package.json)
 4. .tsx 文件中引入的 webpack 别名，TS语法检查报错的问题，详见[一次解决React+TypeScript+Webpack 别名（alias）找不到问题的过程](https://yq.aliyun.com/articles/623179)
+5. eslint + tslint 并不能满足自己的代码洁癖，后又引入了prettier[
+vscode + prettier 专治代码洁癖](https://blog.csdn.net/anxin_wang/article/details/81234214)，经过艰苦的VSCode插件和配置文件的调试过程，代码检查机制总算配置好了。
+6. typescript里面引入图片时，TS语法检查报错，项目没办法正常启动，参阅了(https://stackoverflow.com/questions/43638454/webpack-typescript-image-import?rq=1)，解决了这个问题。
 ### 2019-03-04
 开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run reject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧，<span style="color: #fe2c23">需要注意的是：这个命令只能执行一次，而且不可逆转。</span>
 ### 2019-02-25 
