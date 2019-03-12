@@ -2,19 +2,19 @@
 title: react的基础之上进行引入webpack、eslint、babel的框架搭建
 subtitle: create-react-app-simple
 categories:
-  - reactjs
+  - React
 tags:
-  - reactjs
-keywords: reactjs
+  - React
+keywords: React
 copyright: true
-top: true
+top: false
 date: 2019-03-04 15:13:00
 photos:
   - /create-react-app-simple/logo.svg
 ---
 ### 引言
 {% blockquote %}
-开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run reject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧
+开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 yarn eject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧
 
 {% note danger %} 
 需要注意的是：这个命令只能执行一次，而且不可逆转。
