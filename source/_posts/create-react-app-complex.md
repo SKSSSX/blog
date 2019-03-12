@@ -23,6 +23,7 @@ react脚手架并不能直接运用到项目中去，需要改造，自己进行
 - yarn eject
 - yarn start 启动项目
 {% endblockquote %}
+<!--more-->
 ### 接下来就是思考自己的项目结构了
 {% blockquote @歌特式灵魂摆渡人 https://www.jianshu.com/p/eb7d518b05b8 %}
 如果你刚开始一个项目，不要花超过五分钟在选择一个文件结构上。从以上方法（或者你自己想到的）中任意挑一个然后开始编程吧！在写完一些真实的代码之后，你可能会想重新考虑它。
@@ -194,3 +195,5 @@ eslint + tslint 并不能满足自己的代码洁癖，后又引入了prettier [
 3. typescript里面引入图片时，TS语法检查报错，项目没办法正常启动
 参阅了(https://stackoverflow.com/questions/43638454/webpack-typescript-image-import?rq=1)，解决了这个问题。
 {% endblockquote %}
+
+### 未完待续
