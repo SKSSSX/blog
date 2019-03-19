@@ -196,4 +196,13 @@ eslint + tslint 并不能满足自己的代码洁癖，后又引入了prettier [
 参阅了(https://stackoverflow.com/questions/43638454/webpack-typescript-image-import?rq=1)，解决了这个问题。
 {% endblockquote %}
 
-### 未完待续
+### 为项目引入react-router(v4) 、antd-mobile
+{% blockquote %}
+yarn add react-router-dom
+antd-mobile 请参照官网进行配置和引入，最好是按需加载
+遇到的问题：
+如果babel-plugin-import按需加载的js不符合tslint规范，怎么办？
+修改 tslint 的语法检查配置
+tsconfig.json 中添加   "allowSyntheticDefaultImports": true, // 允许模块没有默认导出
+{% endblockquote %}
+### 浏览器兼容问题---babel-polyfill
