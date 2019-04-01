@@ -8,7 +8,10 @@ tags:
   - TypeScript
 keywords: React
 copyright: true
-top: true
+top: false
+password: Mike
+abstract: 欢迎扫码有偿阅读.  &yen; 10 元, 付款成功后，请邮箱联系我。
+message: Welcome to my blog, enter password to read.
 date: 2019-03-12 09:47:05
 ---
 ### 引言
@@ -206,3 +209,14 @@ antd-mobile 请参照官网进行配置和引入，最好是按需加载
 tsconfig.json 中添加   "allowSyntheticDefaultImports": true, // 允许模块没有默认导出
 {% endblockquote %}
 ### 浏览器兼容问题---babel-polyfill
+### 代码分割，路由动态加载（react-loadable）
+{% blockquote %}
+(react-loadable)[https://github.com/jamiebuilds/react-loadable]
+{% endblockquote %}
+### 高阶组件：路由守卫
+{% blockquote %}
+模拟VUE的路由守卫机制
+{% endblockquote %}
+### react按需引入(lodash)[https://www.cnblogs.com/savokiss/p/8514868.html]
+### 定制antd-mobile主题
+### vsCode安装函数注释插件（KoroFileHeader ）和git源代码管理插件（GitLens）、Import Cost、REST Client、vscode-icons
