@@ -106,6 +106,7 @@ eslint + tslint 并不能满足自己的代码洁癖，后又引入了prettier [
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
     "mini-css-extract-plugin": "0.5.0",
+    "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -220,3 +221,4 @@ tsconfig.json 中添加   "allowSyntheticDefaultImports": true, // 允许模块�
 ### react按需引入(lodash)[https://www.cnblogs.com/savokiss/p/8514868.html]
 ### 定制antd-mobile主题
 ### vsCode安装函数注释插件（KoroFileHeader ）和git源代码管理插件（GitLens）、Import Cost、REST Client、vscode-icons
+### 添加webpack对less和sass的解析配置
