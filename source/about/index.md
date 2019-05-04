@@ -18,11 +18,13 @@ comments: false
 {% endblockquote %}
 
 ## 2019
-自己决定重新调整自己在前端领域的发展方向，这些年总是跟着新技术往前看（这个宗旨是没什么问题），但是前端最基础的知识点，时间过去很久，已经记忆模糊了，才发觉自己这些年是有些舍本逐末了，决定抽出一定的时间温习一下前端最基础的知识和研究一下各类框架的源码。
+自己决定重新调整自己在前端领域的发展方向，努力拓展自己未涉及的领域。
+### 2019-05-04
+利用周六日的闲暇时间，填了搭建react + typescript 的一些坑，框架已经成型，项目中想到的，需要的配置都有了；好的前端框架搭建是做一个可维护，可拓展项目的基础，不会给以后接手的程序员带来麻烦。
 ### 2019-03-10
 几天的努力之下，自己的react项目总算成型，决定新建一个“发布”分支，以供以后开发用。
 ### 2019-03-04
-开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run reject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧，<span style="color: #fe2c23">需要注意的是：这个命令只能执行一次，而且不可逆转。</span>
+开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run eject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧，<span style="color: #fe2c23">需要注意的是：这个命令只能执行一次，而且不可逆转。</span>
 ### 2019-02-25 
 为博客每篇文章（包括首页）也显示字数统计和阅读时长， Nginx 优化配置 - Gzip 压缩, 博文分享换成addthis。
 ### 2019-02-22
