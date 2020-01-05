@@ -26,7 +26,15 @@ hexo clean
 
 # 重新生成public里面的静态资源
 
-hexo deploy -g
+hexo generate
+
+# 生成搜索索引
+
+hexo algolia
+
+# 重新部署
+
+hexo deploy
 
 # 注意
 
