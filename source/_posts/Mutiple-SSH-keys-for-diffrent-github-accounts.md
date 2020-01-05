@@ -136,6 +136,10 @@ Host github.com-jexchan
 	IdentityFile ~/.ssh/id_rsa_jexchan
 {% endcodeblock %}
 
+{% blockquote %}
+这里的Host名称一定不能起github.com 或者 gitlab.com 不然如果对于hexo博客来说，设置的全局git账户就会到这个文件去找对应的SSH-key，然后就会报无权限推送代码的问题
+{% endblockquote %}
+
 ## Clone you repo and modify your Git config
 
 {% blockquote %}
@@ -144,7 +148,7 @@ clone your repo
 {% endblockquote %}
 
 {% codeblock %}
-	$ git clone git@github.com:activehacker/gfs.git gfs_jexchan
+	$ git clone git@github.com-activehacker:activehacker/gfs.git gfs_jexchan
 {% endcodeblock %}
 
 {% blockquote %}
