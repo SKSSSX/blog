@@ -1,10 +1,10 @@
 ---
 layout: about
-title: 盛克思简介
+title: sanks简介
 date: 2018-09-17 08:46:50
 comments: false
 ---
-<!--<div style="color: red" align="center">盛克思简介</div>-->
+<!--<div style="color: red" align="center">sanks简介</div>-->
 
 ## About me
 {% blockquote %}
