@@ -35,8 +35,8 @@ $ ssh-keygen -t rsa -C "jexchan@gmail.com"
 {% endblockquote %}
 
 {% codeblock %}
-# Generating public/private rsa key pair.
-# Enter file in which to save the key (/c/Users/SKS/.ssh/id_rsa): /c/Users/SKS/.ssh/id_rsa_activehacker
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/SKS/.ssh/id_rsa): /c/Users/SKS/.ssh/id_rsa_activehacker
 {% endcodeblock %}
 
 {% blockquote %}
