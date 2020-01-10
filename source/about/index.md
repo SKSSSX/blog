@@ -13,10 +13,12 @@ comments: false
 
 ## 现研究方向
 {% blockquote %}
-现研究mock.js(模拟接口请求)，eslint + prettier(语法检查和格式化工具)，来辅助vue-cli3项目的开发
+现研究flutter和Dart语法，socket.io 写个即时通信的小项目。
 项目还在努力维护中，为保证功能完善，给大家铺路。
 {% endblockquote %}
-
+## 2020
+### 2020-01-10
+APP方面学习flutter和Dart语法，移动web继续使用VUE和ReactJS，并写一些nodejs相关的中间件或服务器。
 ## 2019
 自己决定重新调整自己在前端领域的发展方向，努力拓展自己未涉及的领域。
 ### 2019-05-04
