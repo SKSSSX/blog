@@ -21,12 +21,13 @@ date: 2019-05-18 18:26:14
 {% blockquote %}
 用 async/await 来处理异步请求, 从服务端获取数据，代码更简洁，其已被标准化，
 用的最多的就是，当你后面的数据过滤整理操作，需要依赖于前面接口返回的数据时，此语法方便解决了此需求，
+<span style="color: #fe2c23">注意：await 后面的函数必须返回一个promise</span>
 想获取到async 函数的执行结果，就要调用promise的then 或catch 来给它注册回调函数（类同promise），代码如下：
 {% endblockquote %}
 
 {% codeblock %}
 getTree() {
-  getRegionTree()
+  return getRegionTree()
     .then(res => {
       this.interfaceData = res.data;
       this.interfaceData.name = "选择区域";
