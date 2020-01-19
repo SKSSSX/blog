@@ -4,7 +4,7 @@
 
 # Site
 title: sanks的博客
-subtitle: 光看不练是退步！
+subtitle: 用新思路解决旧问题！
 description: 对于JavaScript(ES6)、VUE、NodeJS、等相关技术的实战经验分享
 keywords:
   - javascript
@@ -16,7 +16,7 @@ keywords:
   - permission
   - 回调地狱
   - Element-UI
-author: shengkesi
+author: sanks
 language: zh-CN
 timezone:
 
