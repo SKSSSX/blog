@@ -2,10 +2,10 @@
 title: Mutiple SSH keys for diffrent github accounts
 subtitle: Mutiple SSH keys for diffrent github accounts
 categories:
-  - JavaScript
+  - Git
 tags:
-  - JavaScript
-keywords: JavaScript
+  - Git
+keywords: Git
 copyright: true
 top: false
 password: mabaoer
