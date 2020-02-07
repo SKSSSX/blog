@@ -48,6 +48,19 @@ async init(originArea, readonly) {
     }
   }
 {% endcodeblock %}
+
+{% blockquote %}
+<span style="color: #fe2c23">重点：vue 中 this.$nextTick() 也会返回一个promise，也可用 async/await，这在工作中很有用，解决一些组件不刷新数据的问题。例如：</span>
+{% endblockquote %}
+
+{% codeblock %}
+async publishFn(name) {
+    this.isShowDiseaseTagsMessage = false;
+    await this.$nextTick(() => {
+      this.isShowDiseaseTagsMessage = (this.queryModel.diseaseTags && this.queryModel.diseaseTags.length === 0)
+    })
+}
+{% endcodeblock %}
 ### es6判断数组已存在某个对象。
 {% blockquote %}
 find() 方法返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
