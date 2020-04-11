@@ -17,7 +17,16 @@ date: 2019-05-18 18:26:14
 写这篇文章的目的就是告诉前端的同学们，ES6 已经是前端程序员必不可少的技能之一，后期再追加 Typescript 的新语法
 {% endblockquote %}
 
-### 关键字 async 与 await 的应用
+### 关键字 async/await 的应用
+{% blockquote %}
+1. async function 是 Promise 的语法糖封装
+2. 异步编程的终极方案 - 以同步的方式写异步
+  - await 关键字可以 “暂停” async function 的执行
+  - await 关键字可以以同步的写法获取 Promise 的执行结果
+  - try-catch 可以获取 await 所得到的错误
+3. 一个穿越事件循环存在的 function
+{% endblockquote %}
+
 {% blockquote %}
 用 async/await 来处理异步请求, 从服务端获取数据，代码更简洁，其已被标准化，
 用的最多的就是，当你后面的数据过滤整理操作，需要依赖于前面接口返回的数据时，此语法方便解决了此需求，

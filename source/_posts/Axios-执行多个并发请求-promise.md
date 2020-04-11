@@ -19,7 +19,13 @@ keywords:
 场景：工作中遇到一个数据接口同时依赖于另外两个接口的情况,
 需要两个接口返回的数据才能实现进一步操作，下面介绍 3 种方法
 {% endblockquote %}
-
+## 首先普及一下promise的一些冷门知识
+{% blockquote %}
+执行 then 和 catch 会返回一个新的 Promise ，该 Promise 最终状态根据 then 和 catch 的回调函数的执行结果决定
+  - 如果回调函数最终是 throw ， 该 Promise 是 rejected 状态
+  - 如果回调函数最终是 return ， 该 Promise 是 resolved 状态
+  - 但如果回调函数最终 return 了一个 Promise ， 该 Promise 会和回调函数的 reurn 的状态保持一致 
+{% endblockquote %}
 ## 利用js回调嵌套的方式
 
 {% codeblock lang:javascript %}
