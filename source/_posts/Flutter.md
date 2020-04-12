@@ -39,9 +39,6 @@ Android Studio
 {% endblockquote %}
 
 ## 个人项目
-<video src="20200409_093944.mp4" type="video/mp4" controls="controls"  width='100%' height='100%' style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
-<source src="20200409_093944.mp4">
+<video src="20200409_093944.ogv" type="video/mp4" controls="controls"  width="200" height="388" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
+<source src="20200409_093944.ogv">
 </video>
-<embed type="video/mp4" allowscriptaccess="always" allowfullscreen="true" wmode="transparent" quality="high" height="300" width="480" src="20200409_093944.mp4"></embed>
-
-{% dplayer "url=20200409_093944.mp4"  "pic=http://home.ustc.edu.cn/~mmmwhy/GEM.jpg" "loop=yes" "theme=#FADFA3" "autoplay=false" "token=tokendemo" %}
