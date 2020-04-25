@@ -8,15 +8,13 @@ encrypt:
 
   ### 2.在你的文章的头部添加上对应的字段，如 password, abstract, message
 
----
-title: hello world
-date: 2016-03-30 21:18:02
-tags:
+ - title: hello world
+ - date: 2016-03-30 21:18:02
+ - tags:
     - fdsafsdaf
-password: Mike
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
----
+ - password: Mike
+ - abstract: Welcome to my blog, enter password to read.
+ - message: Welcome to my blog, enter password to read.
 
 ## 生成项目命令
 
