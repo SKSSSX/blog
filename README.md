@@ -30,7 +30,7 @@ hexo generate
 
 # 生成搜索索引
 
-hexo algolia
+hexo clean && hexo algolia
 
 # 重新部署
 
