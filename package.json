@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "hexo s --debug -p 3111 -o",
-    "start": "hexo clean && hexo generate && hexo algolia && hexo deploy && npm run dev"
+    "start": "hexo clean && hexo algolia && hexo generate && hexo deploy && npm run dev"
   },
   "engines": {
     "node": "~10.15.3"

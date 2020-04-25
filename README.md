@@ -36,6 +36,11 @@ hexo clean && hexo algolia
 
 hexo deploy
 
-# 注意
+# 流程化部署
 
+hexo clean && hexo algolia && hexo generate && hexo deploy
+
+# 注意
+偶尔会出现 环境中缺少 HEXO_ALGOLIA_INDEXING_KEY 的情况（windows），执行命令（在docs中，而非git Bash）
+export(windows 为 set) HEXO_ALGOLIA_INDEXING_KEY=Search-Only API key
 自己的博客，需在此项目中（访问的静态网站SKSSSX.github.io）单独设置ssh-key,并添加信任列表；与此同时，博客需要全局设定 git 的账号和邮箱，来保证推送代码的顺利进行
