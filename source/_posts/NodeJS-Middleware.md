@@ -22,6 +22,7 @@ nodejs中间层能减少开发过程中的一些实际问题，比如跨域，�
 ![同源策略](sop.png "同源策略")
 {% endblockquote %}
 
+<!-- more -->
 {% blockquote %}
 跨域的解决方案有很多，比如 JSONP  Nodejs做反向代理  CORS"跨域资源共享"（Cross-origin resource sharing），现在使用最多的是后两种，nodejs做反向代理，改变HTTP协议中header的属性，是前端开发最常用的方式。
 ![跨域](cross-domain.png "跨域")

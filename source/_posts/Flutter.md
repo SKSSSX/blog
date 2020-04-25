@@ -33,6 +33,7 @@ Dart 是 Flutter 的开发语言， 如同 IOS开发用 swift 一样,
  - 用于创建、构建、测试和编译应用程序的命令行工具
 {% endblockquote %}
 
+<!-- more -->
 ## IDE
 {% blockquote %}
 Android Studio

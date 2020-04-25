@@ -42,6 +42,7 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/c/Users/SKS/.ssh/id_rsa): /c/Users/SKS/.ssh/id_rsa_activehacker
 {% endcodeblock %}
 
+<!-- more -->
 {% blockquote %}
 你也可以不输入文件名，使用默认文件名，那么就会生成 id_rsa 和 id_rsa.pub 两个全局默认的秘钥文件，前者为私钥，后者为公钥。
 当然我们有两个代码仓库，所以最好写上文件名，如id_rsa(公司)或id_rsa_user2(个人). 这样ssh目录下会生成id_rsa.pub和id_rsa_user2.pub两个文件
