@@ -2,36 +2,49 @@
 title: Mutiple SSH keys for diffrent github accounts
 subtitle: Mutiple SSH keys for diffrent github accounts
 categories:
-  - JavaScript
+  - Git
 tags:
-  - JavaScript
-keywords: JavaScript
+  - Git
+keywords: Git
 copyright: true
 top: false
+# password: mabaoer
+# abstract: Welcome to my blog, enter password to read.
+# message: Welcome to my blog, enter password to read.
 date: 2020-01-05 20:01:31
 ---
 ## create different public key
+
 {% blockquote %}
-create different ssh key according to your need
-Note: blog's SSH-KEY is global, others is in your project
+<span style="color: #fe2c23">Note: blog's git configuration is global, others is in your project</span>
 {% endblockquote %}
 
+### create different ssh key according to your need
+
 {% codeblock %}
-$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_activehacker -C "your_email@youremail.com"
-$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_jexchan -C "email@example.com"
+$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_activehacker -C "jexlab@gmail.com"
+$ ssh-keygen -t rsa -f ~/.ssh/id_rsa_jexchan -C "jexchan@gmail.com"
 {% endcodeblock %}
 
 {% blockquote %}
-运行上面那条命令后会让输入一个文件名，用于保存刚才生成的 SSH key 代码，如：
+If your command line has no arguments "-f ~/.ssh/id_rsa_activehacker", as following
+
+{% codeblock %}
+$ ssh-keygen -t rsa -C "jexlab@gmail.com"
+$ ssh-keygen -t rsa -C "jexchan@gmail.com"
+{% endcodeblock %}
+
+运行上面那条命令后会让输入一个文件名，用于保存刚才生成的 SSH key 代码，此时需要输入完整的绝对路径，或者只输入文件名，在当前目录生成，生成后移动到指定的.ssh文件夹内，如：
 {% endblockquote %}
 
 {% codeblock %}
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/azhen/.ssh/id_rsa): /Users/azhen/.ssh/id_rsa_user2
+Enter file in which to save the key (/c/Users/SKS/.ssh/id_rsa): /c/Users/SKS/.ssh/id_rsa_activehacker
 {% endcodeblock %}
 
+<!-- more -->
 {% blockquote %}
-你可以不输入文件名，使用默认文件名，那么就会生成 id_rsa 和 id_rsa.pub 两个全局默认的秘钥文件，前者为私钥，后者为公钥。
+你也可以不输入文件名，使用默认文件名，那么就会生成 id_rsa 和 id_rsa.pub 两个全局默认的秘钥文件，前者为私钥，后者为公钥。
 当然我们有两个代码仓库，所以最好写上文件名，如id_rsa(公司)或id_rsa_user2(个人). 这样ssh目录下会生成id_rsa.pub和id_rsa_user2.pub两个文件
 {% endblockquote %}
 
@@ -40,8 +53,8 @@ Enter file in which to save the key (/Users/azhen/.ssh/id_rsa): /Users/azhen/.ss
 {% endblockquote %}
 
 {% codeblock %}
-Enter passphrase (empty for no passphrase): 
-# Enter same passphrase again:
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
 {% endcodeblock %}
 
 {% blockquote %}
@@ -49,10 +62,10 @@ Enter passphrase (empty for no passphrase):
 {% endblockquote %}
 
 {% codeblock %}
-Your identification has been saved in /c/Users/you/.ssh/id_rsa.
-# Your public key has been saved in /c/Users/you/.ssh/id_rsa.pub.
-# The key fingerprint is:
-# 70:e2:e5:25:06:6c:0b:1a:b1:73:69:18:3a:b4:f4:a2 your_email@example.com
+Your identification has been saved in /c/Users/SKS/.ssh/id_rsa_activehacker.
+Your public key has been saved in /c/Users/SKS/.ssh/id_rsa_activehacker.pub.
+The key fingerprint is:
+SHA256:Iyie1VCcJRLoOmM2VvY/5XF4KPb9MbQpLmEeOLuVDfA jexlab@gmail.com
 {% endcodeblock %}
 
 {% blockquote %}
@@ -65,12 +78,28 @@ Your identification has been saved in /c/Users/you/.ssh/id_rsa.
 {% endcodeblock %}
 
 {% blockquote %}
-then, add these two keys as following(添加到 ssh-agent 信任列表)
+### then, add these two keys as following(添加到 ssh-agent 信任列表)
 {% endblockquote %}
 
 {% codeblock %}
 $ ssh-add ~/.ssh/id_rsa_activehacker
 $ ssh-add ~/.ssh/id_rsa_jexchan
+{% endcodeblock %}
+
+{% blockquote %}
+you can delete all cached keys before
+{% endblockquote %}
+
+{% codeblock %}
+$ ssh-add -D
+{% endcodeblock %}
+
+{% blockquote %}
+finally, you can check your saved keys
+{% endblockquote %}
+
+{% codeblock %}
+$ ssh-add -l
 {% endcodeblock %}
 
 {% blockquote %}
@@ -125,30 +154,31 @@ Then added
 {% codeblock %}
 #activehacker account
 Host github.com-activehacker
-	HostName github.com
-	User git
-	IdentityFile ~/.ssh/id_rsa_activehacker
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa_activehacker
 
 #jexchan account
 Host github.com-jexchan
-	HostName github.com
-	User git
-	IdentityFile ~/.ssh/id_rsa_jexchan
+HostName github.com
+User git
+IdentityFile ~/.ssh/id_rsa_jexchan
 {% endcodeblock %}
 
 {% blockquote %}
-这里的Host名称一定不能起github.com 或者 gitlab.com 不然如果对于hexo博客来说，设置的全局git账户就会到这个文件去找对应的SSH-key，然后就会报无权限推送代码的问题
+这样，在我们创建的 config 文件中，配置了两条记录。 分别指向两个 SSH key。 HostName是原本的域名 Host是与HostName对应的自定义的名字。
 {% endblockquote %}
 
 ## Clone you repo and modify your Git config
 
 {% blockquote %}
-clone your repo
-比如我们图中的 git@github.com:azhen1/lerna-demo.git。 我们需要对它稍作加工，把域名部分替换成我们在 config 中配置的 Host： git@github.azhen1:azhen1/lerna-demo.git。
+### clone your repo
+在项目的下载地址中，有一个 Use SSH 的链接，点击它之后，就可以得到 SSH 格式的地址
+比如 git@github.com:activehacker/gfs.git。 我们需要对它稍作加工，把域名部分替换成我们在 config 中配置的 Host： git@github.com-activehacker:activehacker/gfs.git。
 {% endblockquote %}
 
 {% codeblock %}
-	$ git clone git@github.com-activehacker:activehacker/gfs.git gfs_jexchan
+$ git clone git@github.com-activehacker:activehacker/gfs.git gfs_jexchan
 {% endcodeblock %}
 
 {% blockquote %}
@@ -156,15 +186,15 @@ clone your repo
 {% endblockquote %}
 
 {% blockquote %}
-cd gfs_jexchan and modify git config
+### cd gfs_jexchan and modify git config(为每个仓库单独设置用户)
 {% endblockquote %}
 
 {% codeblock %}
-	$ git config user.name "jexchan"
-	$ git config user.email "jexchan@gmail.com" 
- 
-	$ git config user.name "activehacker"
-	$ git config user.email "jexlab@gmail.com" 
+$ git config user.name "jexchan"
+$ git config user.email "jexchan@gmail.com" 
+
+$ git config user.name "activehacker"
+$ git config user.email "jexlab@gmail.com" 
 {% endcodeblock %}
 
 {% blockquote %}
@@ -172,9 +202,9 @@ then use normal flow to push your code
 {% endblockquote %}
 
 {% codeblock %}
-	$ git add .
-	$ git commit -m "your comments"
-	$ git push
+$ git add .
+$ git commit -m "your comments"
+$ git push
 {% endcodeblock %}
 
 

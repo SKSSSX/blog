@@ -7,7 +7,10 @@
   },
   "scripts": {
     "dev": "hexo s --debug -p 3111 -o",
-    "start": "hexo clean && hexo generate && hexo algolia && hexo deploy && npm run dev"
+    "start": "hexo clean && hexo algolia && hexo generate && hexo deploy && npm run dev"
+  },
+  "engines": {
+    "node": "~10.15.3"
   },
   "dependencies": {
     "hexo": "^3.7.0",
@@ -32,6 +35,7 @@
     "hexo-renderer-marked": "^0.3.2",
     "hexo-renderer-sass": "^0.3.2",
     "hexo-renderer-stylus": "^0.3.3",
+    "hexo-tag-dplayer": "^0.3.3",
     "hexo-wordcount": "^6.0.1",
     "instantsearch.js": "^2.10.4",
     "leancloud-storage": "^3.11.0",
