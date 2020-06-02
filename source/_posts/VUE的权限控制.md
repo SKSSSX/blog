@@ -10,9 +10,9 @@ keywords:
   - permission
 copyright: true
 abbrlink: 58890
-password: sanks
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
+# password: sanks
+# abstract: Welcome to my blog, enter password to read.
+# message: Welcome to my blog, enter password to read.
 date: 2018-08-22 15:17:06
 
 ---

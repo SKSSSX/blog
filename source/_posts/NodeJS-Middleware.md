@@ -8,9 +8,9 @@ tags:
 keywords: Nodejs
 copyright: true
 top: false
-password: sanks
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
+# password: sanks
+# abstract: Welcome to my blog, enter password to read.
+# message: Welcome to my blog, enter password to read.
 date: 2020-02-03 14:59:38
 ---
 

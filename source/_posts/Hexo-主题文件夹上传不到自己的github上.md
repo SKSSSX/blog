@@ -7,9 +7,9 @@ categories:
 keywords:
   - Hexo
 abbrlink: 12507
-password: sanks
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
+# password: sanks
+# abstract: Welcome to my blog, enter password to read.
+# message: Welcome to my blog, enter password to read.
 date: 2019-02-10 14:44:49
 ---
 
