@@ -8,7 +8,7 @@ tags:
 keywords: Git
 copyright: true
 top: false
-# password: mabaoer
+# password: sanks
 # abstract: Welcome to my blog, enter password to read.
 # message: Welcome to my blog, enter password to read.
 date: 2020-01-05 20:01:31

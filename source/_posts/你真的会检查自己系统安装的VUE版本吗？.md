@@ -6,6 +6,9 @@ tags:
   - vue
 copyright: true
 abbrlink: 56893
+# password: sanks
+# abstract: Welcome to my blog, enter password to read.
+# message: Welcome to my blog, enter password to read.
 date: 2018-12-17 13:55:52
 keywords:
 ---
