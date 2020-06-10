@@ -13,9 +13,9 @@ keywords:
   - JavaScript
 copyright: true
 top: false
-# password: sanks
-# abstract: Welcome to my blog, enter password to read.
-# message: Welcome to my blog, enter password to read.
+password: sanks_lock
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
 date: 2020-05-20 23:40:45
 ---
 
@@ -38,7 +38,7 @@ date: 2020-05-20 23:40:45
 {% blockquote %}
 在将函数附加到DOM事件时，具有函数的防抖动或节流的版本尤其有用。为什么呢?因为我们在事件和函数的执行之间给了自己一个控制层。请记住，我们不控制这些DOM事件的发出频率。它可以变化。
 {% endblockquote %}
-
+<!-- more -->
 {% blockquote %}
 例如，让我们讨论一下滚动事件。看这个例子：
 {% endblockquote %}

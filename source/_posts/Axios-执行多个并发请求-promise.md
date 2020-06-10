@@ -10,9 +10,9 @@ tags:
   - 回调地狱
 copyright: true
 abbrlink: 39187
-# password: sanks
-# abstract: Welcome to my blog, enter password to read.
-# message: Welcome to my blog, enter password to read.
+password: sanks_lock
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
 date: 2018-12-18 08:21:43
 keywords:
 ---
