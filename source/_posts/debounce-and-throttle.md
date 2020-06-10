@@ -13,9 +13,9 @@ keywords:
   - JavaScript
 copyright: true
 top: false
-# password: sanks
-# abstract: Welcome to my blog, enter password to read.
-# message: Welcome to my blog, enter password to read.
+password: sanks_lock
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
 date: 2020-05-20 23:40:45
 ---
 

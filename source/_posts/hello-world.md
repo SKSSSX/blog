@@ -6,6 +6,9 @@ tags:
   - hexo
 copyright: true
 abbrlink: 16107
+password: sanks_lock
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
 date: 2018-08-21 15:17:06
 keywords:
 ---

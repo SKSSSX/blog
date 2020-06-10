@@ -8,6 +8,9 @@ tags:
 keywords: axios
 copyright: true
 top: false
+password: sanks_lock
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
 date: 2020-04-13 09:24:58
 # password: 4
 # abstract: (2 << 1) & (8 >> 1)
