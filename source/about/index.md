@@ -17,10 +17,10 @@ comments: false
 项目还在努力维护中，为保证功能完善，给大家铺路。
 {% endblockquote %}
 ## 2020
-### 2020-01-10
-APP方面学习flutter和Dart语法，移动web继续使用VUE和ReactJS，并写一些nodejs相关的中间件或服务器。
 ### 2010-06-09
 2020年已过了一半，我未停止脚步，暂时博客专属自己学习和参考用
+### 2020-01-10
+APP方面学习flutter和Dart语法，移动web继续使用VUE和ReactJS，并写一些nodejs相关的中间件或服务器。
 ## 2019
 自己决定重新调整自己在前端领域的发展方向，努力拓展自己未涉及的领域。
 ### 2019-05-04
@@ -28,7 +28,7 @@ APP方面学习flutter和Dart语法，移动web继续使用VUE和ReactJS，并�
 ### 2019-03-10
 几天的努力之下，自己的react项目总算成型，决定新建一个“发布”分支，以供以后开发用。
 ### 2019-03-04
-开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置，有兴趣的朋友可以移步 [react的基础之上进行引入webpack、eslint、babel的框架搭建](https://github.com/SKSSSX/jelly2), 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run eject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧，<span style="color: #fe2c23">需要注意的是：这个命令只能执行一次，而且不可逆转。</span>
+开始深入研究reactjs，弥补之前的浅尝辄止；一开始自己用官方的项目生成器生成了一个简单的架构，自己从这个简化版逐步加入babel, webpack, eslint 等相关的配置, 但是你仔细阅读react项目下的 <span style="color: #fe2c23">READEME.md</span>, 你就会发现我绕了远路，其实react提供了 npm run eject 来注入webpack, eslint, label 等相关依赖和配置，可能这就是react给大家提供的 <span style="color: #fe2c23">脚手架</span> 吧，<span style="color: #fe2c23">需要注意的是：这个命令只能执行一次，而且不可逆转。</span>
 ### 2019-02-25 
 为博客每篇文章（包括首页）也显示字数统计和阅读时长， Nginx 优化配置 - Gzip 压缩, 博文分享换成addthis。
 ### 2019-02-22
