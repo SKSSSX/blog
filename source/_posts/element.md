@@ -8,9 +8,6 @@ keywords:
   - Element-UI
 copyright: true
 abbrlink: 44407
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 date: 2018-09-27 23:08:37
 
 ---

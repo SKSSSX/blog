@@ -7,9 +7,6 @@ tags:
  - JavaScript
 keywords: JavaScript
 copyright: true
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 date: 2019-02-24 09:21:09
 ---
 {% blockquote %}

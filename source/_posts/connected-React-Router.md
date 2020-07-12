@@ -1,5 +1,5 @@
 ---
-title: Vue Router
+title: connected React Router
 subtitle: connected React Router
 categories:
   - Redux
@@ -8,9 +8,6 @@ tags:
 keywords: Redux
 copyright: true
 abbrlink: 39187
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 top: false
 date: 2020-07-06 10:16:42
 ---

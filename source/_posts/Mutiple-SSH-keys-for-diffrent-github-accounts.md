@@ -8,9 +8,6 @@ tags:
 keywords: Git
 copyright: true
 top: false
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 date: 2020-01-05 20:01:31
 ---
 ## create different public key
