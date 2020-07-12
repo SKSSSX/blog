@@ -7,9 +7,6 @@ categories:
 keywords:
   - Hexo
 abbrlink: 4746
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 date: 2019-02-09 14:13:18
 
 ---

@@ -9,9 +9,6 @@ tags:
 keywords: React
 copyright: true
 top: false
-password: sanks_lock
-abstract: Welcome to my blog, enter password to read.
-message: Welcome to my blog, enter password to read.
 date: 2019-03-12 09:47:05
 ---
 ### 引言
