@@ -7,11 +7,11 @@ tags:
   - 随笔
 keywords: 前端成长之路
 copyright: true
-password: sanks_lock
+password: gotham
 abstract: Welcome to my blog, enter password to read.
 message: Welcome to my blog, enter password to read.
 top: false
-date: 2020-07-16 20:11:40
+date: 2020-04-16 20:11:40
 ---
 {% note info %}
 ## 用高标准来严格要求自己
