@@ -7,7 +7,7 @@ tags:
   - 随笔
 keywords: 前端成长之路
 copyright: true
-password: gotham
+password: sanks_lock
 abstract: Welcome to my blog, enter password to read.
 message: Welcome to my blog, enter password to read.
 top: false

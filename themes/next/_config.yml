@@ -204,8 +204,10 @@ links_title: Links
 # links_layout: block
 links_layout: inline
 links:
+  Shen博客: http://www.shenliyang.com
   Steven博客: https://xiaosuda.top
   Naice博客: https://blog.naice.me
+
 
 # Sidebar Avatar
 avatar:
