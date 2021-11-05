@@ -1,5 +1,5 @@
 {% if theme.google_site_verification %}
-<meta name="google-site-verification" content="566vKidEd3rhgol6_eANvniNU1LISEec0iyQZxjSE10" />
+<meta name="google-site-verification" content="KooPq2vd-O5RKBqiM_0tiMHdDuOHo8wOhtsbvi5" />
 {% endif %}
 {% if theme.baidu_site_verification %}
 <meta name="baidu-site-verification" content="gxXWBW73j2"/>
