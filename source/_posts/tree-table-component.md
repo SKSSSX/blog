@@ -9,9 +9,14 @@ keywords:
   - tree table
   - 树形表格组件
   - Vue
+  - vue-table
+  - tree-grid
+  - vue-component
+  - vue-jsx
 copyright: true
 top: false
 date: 2021-12-15 23:25:41
+updated: 2021-12-16 00:23:45
 ---
 
 {% note info %}
@@ -21,7 +26,7 @@ date: 2021-12-15 23:25:41
 {% blockquote %}
 距离上一篇博客有一月有余了吧，对于写博客的目的而言，我其实就是为了抒发自己无处宣泄的技术主张，在编写组件的过程中，很多同事嘲笑我“沉迷于组件”，也有的人让我“拿来主义”，并逼迫产品修改设计的重要显示和功能，但是我认为一个合格的程序员真的不应该是当这样的程序员，我何尝不知道工期紧，任务重，虽说我是修改别人的组件实现的最终效果吧，但是我这起码是当躲不开“造轮子”环节的时候，依然迎难而上。
 {% endblockquote %}
-
+<!-- more -->
 {% blockquote %}
 说点题外话，没有谁是天生的技术大拿，只要你对技术这一行有兴趣，有不懈的动力，你一定会先人一步到达终点，好多人在这条路上半路放弃，或者对自己从事的工作出现疲态、厌倦的态度。
 对于我自己，自己给自己的压力远胜于比人给的，不逼自己一把就不会有进步，任何人都可以对我失去信心或者加以否定，唯独自己不可以，否定自己那就永远不可能有进步了，就废了。
@@ -69,9 +74,15 @@ github 地址：https://github.com/MisterTaki/vue-table-with-tree-grid
 {% endblockquote %}
 
 {% note success %}
-## 深夜码字，有些累了，未完待续……
+## 造好的轮子给你用
 {% endnote %}
 
 {% blockquote %}
-后续我会把组件代码传到本人的github上，供大家批评指正和使用，请耐心等待……
+[树形表格组件](https://github.com/SKSSSX/vue-tree-table-with-line)
+{% endblockquote %}
+
+## 后续工作
+
+{% blockquote %}
+后期我要做到尽善尽美，没用的属性删掉，像 selected-node 这个属性，代码尽量做到清晰可读，供使用者进行很好的扩展。
 {% endblockquote %}
