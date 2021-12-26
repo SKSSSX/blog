@@ -73,15 +73,24 @@ github 地址：https://github.com/MisterTaki/vue-table-with-tree-grid
 <span class="sanks-keywords">最主要的（敲黑板）是：</span> 截止本博客发表，它对我来说存在重大缺陷 - “线是断的” ，在 “扩展行” 这一级别，没有画它组件中说到的 “连接线”，而且样式不太美观吧，至于到现在（你看到这篇博客）有没有修补这个问题，请自行检验。
 {% endblockquote %}
 
+
+{% note primary %}
+## 组件功能示意图
+{% endnote %}
+![演示示意图](example.gif "演示示意图")
+
 {% note success %}
 ## 造好的轮子给你用
 {% endnote %}
 
 {% blockquote %}
-[树形表格组件](https://github.com/SKSSSX/vue-tree-table-with-line)
+github 地址：https://github.com/SKSSSX/vue-tree-table-with-line
+npm 包地址：https://www.npmjs.com/package/vue-tree-table-with-line
 {% endblockquote %}
 
+{% note danger %} 
 ## 后续工作
+{% endnote %}
 
 {% blockquote %}
 后期我要做到尽善尽美，没用的属性删掉，像 selected-node 这个属性，代码尽量做到清晰可读，供使用者进行很好的扩展。
