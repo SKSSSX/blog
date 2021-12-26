@@ -5,7 +5,7 @@
 # Site
 title: sanks的博客
 subtitle: 知识付诸行动才有转换为能力的效果
-description: 对于JavaScript(ES6)、VUE、NodeJS、等相关技术的实战经验分享
+description: 对于JavaScript(ES6)、VUE、React、NodeJS、等相关技术的实战经验分享
 keywords:
   - javascript
   - hexo
@@ -23,7 +23,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://www.shengkesi.cn
+url: https://www.sanks-blog.com
 root: /
 # permalink: :year/:month/:day/:title/
 permalink: :title/
@@ -145,12 +145,12 @@ baidusitemap:
 nofollow:
     enable: true
     exclude:
-    - www.shengkesi.cn
+    - www.sanks-blog.com
 
 # 百度链接自动提交
 baidu_url_submit:
   count: 6 # 提交最新的链接数量
-  host: http://www.shengkesi.cn # 在百度站长平台中注册的域名
+  host: http://www.sanks-blog.com # 在百度站长平台中注册的域名
   token: iRQU049tuKMtGUma # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
   path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里
 

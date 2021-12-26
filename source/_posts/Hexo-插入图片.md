@@ -44,7 +44,7 @@ source
 {% endblockquote %}
 
 {% blockquote %}
-而实际存放的目录是 http://www.shengkesi.cn/assets/images/image-1.png ，导致图片资源访问不到。
+而实际存放的目录是 http://www.sanks-blog.com/assets/images/image-1.png ，导致图片资源访问不到。
 {% endblockquote %}
 
 {% blockquote %}

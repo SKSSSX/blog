@@ -1,5 +1,5 @@
 ---
-title: 面试有感
+title: 程序员的自我修养
 subtitle: The interview experience
 categories:
   - 随笔
@@ -42,7 +42,7 @@ date: 2020-12-27 21:41:55
 {% endnote %}
 
 {% blockquote %}
-比如我在天士力天天干的什么工作，跟面试那家做的不是很契合，人家准不会满意，就连技术见解不一致也会pass的。
+比如我在当前公司天天干的什么工作，跟面试那家做的不是很契合，人家准不会满意，就连技术见解不一致也会pass的。
 {% endblockquote %}
 
 {% note success %}

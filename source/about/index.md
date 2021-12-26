@@ -38,7 +38,7 @@ APP方面学习flutter和Dart语法，移动web继续使用VUE和ReactJS，并�
 ### 2019-02-15
 为自己的博客网站进行了SEO，包括百度搜索和谷歌搜索，并加入了相关的站点地图，在hexo中添加百度主动推送功能, 每次部署主动推送一次
 ### 2019-02-09
-把自己的博客成功迁移到自己服务器上，配置了git远程资源库，配置nginx ：能够用https协议访问博客地址，强制http转https协议访问博客，http://shengkesi.cn -> https://shengkesi.cn    http://www.shengkesi.cn -> https://www.shengkesi.cn
+把自己的博客成功迁移到自己服务器上，配置了git远程资源库，配置nginx ：能够用https协议访问博客地址，强制http转https协议访问博客，http://shengkesi.cn -> https://shengkesi.cn    http://www.sanks-blog.com -> https://www.sanks-blog.com
 ### 2019-01-27
 服务器部署gitlab失败后，自己在家测试了一下ping自己的博客的github地址，和ping自己的服务器对比了一下，发现github的延迟132ms,而且丢包；自己的服务器74ms，毅然决定把自己的博客网站迁移到自己的服务器上，一开始弄了FTP，但是有些舍近求远了；发现其实自己在服务器端搭建跟本地一样的开发环境即可，只是多了ngnix的安装和配置。
 ### 2019-01-25
