@@ -118,3 +118,23 @@ date: 2020-04-16 20:11:40
 {% blockquote %}
 7.  本着以上的原则，我在这个行业上，一天比一天是个进步，自己遇到好的技术，现在依然是满心欢喜。
 {% endblockquote %}
+
+{% note danger %} 
+## 人生的意义
+{% endnote %}
+
+{% blockquote %}
+1. 做自己喜欢的事，并且能够靠这个养活自己。你最有兴趣，最能发挥你的能力的事情，你找到这样的事业把它做好。
+{% endblockquote %}
+
+{% blockquote %}
+2. 和自己喜欢的人在一起。
+{% endblockquote %}
+
+{% note success %}
+## 个人总结
+{% endnote %}
+
+{% blockquote %}
+我找到了我喜爱的前端事业，以后可能扩展到全栈（用nodejs服务做后台），我希望自己能当这个行业的活化石，见证前端行业的发展。
+{% endblockquote %}
