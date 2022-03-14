@@ -13,7 +13,7 @@ comments: false
 
 ## 现研究方向
 {% blockquote %}
-目前自己的后台项目已经具备了以下功能模块
+目前自己的后台项目已经具备了以下功能模块：
 - 文件上传服务
 - 短信发送服务
 - 权限认证服务
@@ -22,11 +22,13 @@ comments: false
 自己梦想开发的模块和功能都已经完成了，后续就是把每个功能存在的问题修补一下。
 {% endblockquote %}
 ## 2022
- 完成项目的拆解，还有在线聊天和大文件分片上传的功能，
+完成项目的拆解，还有在线聊天和大文件分片上传的功能，
 ### 2022-02-28
 <span style="color: #fe2c23">完善在线聊天的功能的开发，并成功与后台socket服务对接</span>
+
 ### 2022-02-22
 <span style="color: #fe2c23">完成了大文件分片功能的开发，http协议和websocket协议</span>
+
 ### 2022-01-26
 <span style="color: #fe2c23">从 react-egg-typescript 服务中，拆解出子服务 react-socket-server</span>
 
@@ -34,6 +36,7 @@ comments: false
 完善登录验权机制OAuth2.0, 还有更合理、更切实际的加密解密方案。
 ### 2021-10-21
 <span style="color: #fe2c23">开发倒计时组件(react)</span>
+
 ### 2021-10-11
 全线撤掉ECIES的加密解密方案，宣告失败，由于nodejs生成的 Buffer 与 前台的 ArrayBuffer 无法转换处理
 改造加密的方式为 RSA + AES 加密的方案
@@ -52,8 +55,10 @@ comments: false
 
 ## 2020
 完善自己的前台项目，tsx文件与jsx文件的共存使用
-###2020-09-27(重大项目改造)
+
+### 2020-09-27(重大项目改造)
 <span style="color: #fe2c23">将自己的项目前后台代码拆解成两个项目，前台 react-koa-typescript 和后台 react-egg-typescript</span>
+
 ### 2020-09-24
 将网站路由从browserHistory模式改为hashHistory模式
 更改页面之间的路由跳转传参形式（刷新页面，参数不丢失）
