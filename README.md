@@ -1,44 +1,65 @@
 # sanks的博客
-## 基于hexo做的博客
-## 启用加密机制
-  ### 1.首先在 _config.yml 中启用该插件：
 
+基于 **Hexo 8** + **NexT 8** 的静态博客。
+
+## 环境
+
+- Node.js >= 20.19（推荐本机 Node 24）
+- 仅使用 **npm**（已移除 yarn.lock）
+
+```bash
+npm install
+```
+
+## 常用命令
+
+```bash
+# 本地预览（默认端口 3111）
+npm run dev
+
+# 清理
+npm run clean
+
+# 生成静态文件
+npm run build
+
+# 更新 Algolia 索引（需配置 HEXO_ALGOLIA_INDEXING_KEY 或 algolia.adminApiKey）
+npm run algolia
+
+# 部署到 GitHub Pages
+npm run deploy
+
+# 一键：清理 → 索引 → 生成 → 部署 → 本地预览
+npm start
+```
+
+## 文章加密
+
+在 `_config.yml` 中保持：
+
+```yaml
 encrypt:
-    enable: true
+  enable: true
+```
 
-  ### 2.在你的文章的头部添加上对应的字段，如 password, abstract, message
+在文章 frontmatter 中添加：
 
- - title: hello world
- - date: 2016-03-30 21:18:02
- - tags:
-    - fdsafsdaf
- - password: Mike
- - abstract: Welcome to my blog, enter password to read.
- - message: Welcome to my blog, enter password to read.
+```yaml
+password: your_password
+abstract: Welcome to my blog, enter password to read.
+message: Welcome to my blog, enter password to read.
+```
 
-## 生成项目命令
+## 主题配置
 
-# 清理public文件
+NexT 配置在仓库根目录 `_config.next.yml`（不要改 `node_modules/hexo-theme-next`）。
 
-hexo clean
+旧主题备份在 `themes/*-legacy/`，当前主题由 npm 包 `hexo-theme-next` 提供。
 
-# 重新生成public里面的静态资源
+## 发布流程
 
-hexo generate
-
-# 生成搜索索引
-
-hexo clean && hexo algolia
-
-# 重新部署
-
-hexo deploy
-
-# 流程化部署
-
+```bash
 hexo clean && hexo algolia && hexo generate && hexo deploy
+```
 
-# 注意
-偶尔会出现 环境中缺少 HEXO_ALGOLIA_INDEXING_KEY 的情况（windows），执行命令（在docs中，而非git Bash）
-export(windows 为 set) HEXO_ALGOLIA_INDEXING_KEY=Search-Only API key
-自己的博客，需在此项目中（访问的静态网站SKSSSX.github.io）单独设置ssh-key,并添加信任列表；与此同时，博客需要全局设定 git 的账号和邮箱，来保证推送代码的顺利进行
+部署目标：`git@github.com:SKSSSX/SKSSSX.github.io.git`（`master`）。
