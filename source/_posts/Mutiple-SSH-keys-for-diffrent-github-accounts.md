@@ -175,7 +175,7 @@ IdentityFile ~/.ssh/id_rsa_jexchan
 {% endblockquote %}
 
 {% codeblock %}
-$ git clone git@github.com-activehacker:activehacker/gfs.git gfs_jexchan
+$ git clone git@github.com:activehacker/gfs.git gfs_jexchan
 {% endcodeblock %}
 
 {% blockquote %}

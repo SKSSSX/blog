@@ -19,15 +19,16 @@ keywords:
   - NodeJS
 author: sanks
 language: zh-CN
-timezone:
+timezone: Asia/Shanghai
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://www.sanks-blog.com
 root: /
-# permalink: :year/:month/:day/:title/
 permalink: :title/
 permalink_defaults:
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
 
 # Directory
 source_dir: source
@@ -38,72 +39,79 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-    - README.md
-    - 404.html
+  - README.md
+  - 404.html
 
 # Writing
-new_post_name: :title.md # File name of new posts
+new_post_name: :title.md
 default_layout: post
-auto_spacing: true # 在中文和英文之间加入空格
-titlecase: false # Transform title into titlecase
-external_link: true # Open external links in new tab
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
 relative_link: false
 future: true
+# 中英文之间自动加空格（Hexo 内置）
+# auto_spacing was removed in newer Hexo; keep spacing via editor/plugins if needed
+syntax_highlighter: highlight.js
 highlight:
   enable: true
   line_number: true
   auto_detect: false
-  tab_replace:
-  
+  tab_replace: ''
+  wrap: true
+  hljs: false
+prismjs:
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+
 # Home page setting
-# path: Root path for your blogs index page. (default = '')
-# per_page: Posts displayed per page. (0 = disable pagination)
-# order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
 tag_map:
 
+meta_generator: true
+
 # Date / Time format
-## Hexo uses Moment.js to parse and display date
-## You can customize the date format as defined in
-## http://momentjs.com/docs/#/displaying/format/
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
+updated_option: date
 
 # Pagination
-## Set per_page to 0 to disable pagination
 per_page: 10
 pagination_dir: page
 
+include:
+exclude:
+ignore:
+
 # Extensions
-## Plugins: https://hexo.io/plugins/
-## Themes: https://hexo.io/themes/
 theme: next
 
 # Deployment
-## Docs: https://hexo.io/docs/deployment.html
 deploy:
   - type: git
     repository: git@github.com:SKSSSX/SKSSSX.github.io.git
-    #repository: git@47.244.17.148:/var/repo/blog.git
     branch: master
   - type: baidu_url_submitter
+
 # Server
 server:
-  compress: true # 开启压缩
-# plugins
-# plugins:
-#   - hexo-algoliasearch
-# algolia
+  compress: true
+  port: 3111
+
+# Algolia（索引写入用 adminApiKey / 环境变量 ALGOLIA_ADMIN_API_KEY）
 algolia:
   appId: "HRORNW2LY2"
   apiKey: "ded44ecb6cb09def6a2a97166489710c"
@@ -119,6 +127,7 @@ algolia:
     - slug
     - tags
     - title
+
 # RSS
 feed:
   type: atom
@@ -131,7 +140,7 @@ feed:
   order_by: -date
   icon: icon.png
 
-# 博客加密
+# 博客加密（hexo-blog-encrypt v4）
 encrypt:
   enable: true
 
@@ -141,33 +150,16 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
-# nofollow插件
+# nofollow（hexo-filter-nofollow）
 nofollow:
-    enable: true
-    exclude:
+  enable: true
+  field: site
+  exclude:
     - www.sanks-blog.com
 
 # 百度链接自动提交
 baidu_url_submit:
-  count: 6 # 提交最新的链接数量
-  host: http://www.sanks-blog.com # 在百度站长平台中注册的域名
-  token: iRQU049tuKMtGUma # 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
-  path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里
-
-# 为博客加上萌萌的宠物
-live2d:
-  enable: false
-  scriptFrom: local
-  pluginRootPath: live2dw/
-  pluginJsPath: lib/
-  pluginModelPath: assets/
-  tagMode: false
-  log: false
-  model:
-    use: live2d-widget-model-wanko
-  display:
-    position: right
-    width: 150
-    height: 300
-  mobile:
-    show: true
+  count: 6
+  host: http://www.sanks-blog.com
+  token: iRQU049tuKMtGUma
+  path: baidu_urls.txt
