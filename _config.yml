@@ -111,7 +111,6 @@ deploy:
   - type: git
     repository: https://github.com/SKSSSX/SKSSSX.github.io.git
     branch: master
-  - type: baidu_url_submitter
 
 # Server
 server:
@@ -153,10 +152,3 @@ nofollow:
   field: site
   exclude:
     - www.sanks-blog.com
-
-# 百度链接自动提交
-baidu_url_submit:
-  count: 6
-  host: http://www.sanks-blog.com
-  token: iRQU049tuKMtGUma
-  path: baidu_urls.txt
