@@ -2,7 +2,7 @@
 title: Socket.IO 能扩、MQTT 慎扩：实时通道的多副本边界
 subtitle: 水平扩展时哪些连接能堆机器，哪些不能
 categories:
-  - NodeJS
+  - Nodejs
 tags:
   - Socket.IO
   - MQTT
@@ -10,10 +10,11 @@ tags:
 keywords: 水平扩展, Redis Adapter, MQTT, 实时
 copyright: true
 date: 2026-07-20 21:05:00
-top: false
 ---
 
-实时系统一忙就「多开几个副本」。但 Web 推送和设备接入不是同一种扩展模型： **Socket.IO 可以靠适配器水平扩展，MQTT 订阅端却常常必须是单活跃消费者**。分不清边界，轻则消息重复，重则状态错乱。
+实时系统一忙就想「多开几个副本」。但 Web 推送和设备接入不是同一种扩展模型：Socket.IO 可以靠适配器水平扩展，MQTT 订阅端却常常必须是单活跃消费者。分不清边界，轻则消息重复，重则状态错乱。
+
+<!-- more -->
 
 ## 一、两种连接的本质区别
 
@@ -26,7 +27,7 @@ top: false
 
 ## 二、拓扑对比
 
-```mermaid
+{% mermaid %}
 flowchart LR
   subgraph web [浏览器侧]
     C1[Client A] --> S1[Node 副本1]
@@ -40,11 +41,13 @@ flowchart LR
     M --> Q[内部消息总线]
     Q --> R
   end
-```
+{% endmermaid %}
+
+> **读图：** 浏览器侧靠 Redis Adapter 跨副本广播；设备侧先汇聚到单活跃消费者，再扇出到内部总线——扩展点不在 MQTT 订阅进程上。
 
 ## 三、Socket.IO：多副本 OK 的前提
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant C1 as Client A (副本1)
   participant C2 as Client B (副本2)
@@ -54,17 +57,17 @@ sequenceDiagram
   R->>C1: 推送
   R->>C2: 推送
   Note over R: adapter 保证跨副本广播不丢
-```
+{% endmermaid %}
 
 使用 Redis Adapter 后：
 
 - 浏览器连接数可以随 Node 副本近似线性扩
-- 会话粘性可选，但广播依赖适配器而不是「碰巧打到同一进程」
+- 会话粘性可选，但广播依赖适配器，而不是「碰巧打到同一进程」
 - 鉴权在握手完成；重连要能恢复房间订阅
 
 ## 四、MQTT：为什么要慎扩
 
-```mermaid
+{% mermaid %}
 flowchart TB
   D[设备] --> B[Broker]
   B --> M1[业务副本1 订阅]
@@ -73,17 +76,17 @@ flowchart TB
   M2 --> DB2[落库 遥测1 重复!]
   M1 --> AL1[告警1]
   M2 --> AL2[告警1 重复!]
-```
+{% endmermaid %}
 
-若多个业务副本用**相同 clientId/相同共享语义不当**去订同一设备主题：
+若多个业务副本用**相同 clientId / 不当共享语义**订同一设备主题：
 
 - 可能互踢（同 clientId 只保留一个连接）
 - 或每条遥测被处理多次
-- 落库/推送出现双份轨迹、双份告警
+- 落库、推送出现双份轨迹、双份告警
 
 ## 五、稳妥的 MQTT 扩展模式
 
-```mermaid
+{% mermaid %}
 flowchart LR
   D[设备] --> B[Broker]
   B --> M[单活跃消费者<br/>主备]
@@ -94,7 +97,7 @@ flowchart LR
   W1 --> S[Socket.IO 推送]
   W2 --> S
   W3 --> S
-```
+{% endmermaid %}
 
 常见稳妥模式：
 
@@ -132,14 +135,14 @@ io.adapter(createAdapter(pubClient, subClient));
 
 ## 八、排障：重复消费怎么确认
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[怀疑重复消费] --> B[日志加实例ID]
   B --> C[同一遥测出现两条不同实例日志]
   C --> D{确认重复}
   D --> E[改单活跃消费者]
   D --> F[或用共享订阅+幂等]
-```
+{% endmermaid %}
 
 ## 九、小结
 

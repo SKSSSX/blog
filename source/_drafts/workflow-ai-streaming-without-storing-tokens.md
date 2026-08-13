@@ -2,7 +2,7 @@
 title: 工作流不存 Token：流式 AI 如何既实时又可靠
 subtitle: Temporal 一类工作流与 SSE 的边界划分
 categories:
-  - NodeJS
+  - Nodejs
 tags:
   - AI
   - Temporal
@@ -10,10 +10,11 @@ tags:
 keywords: Temporal, SSE, AI, 工作流
 copyright: true
 date: 2026-07-13 20:15:00
-top: false
 ---
 
-巡检分析、报告生成这类任务，既要 **边生成边展示**，又要 **失败可重试、结果可审计**。若把每个流式 token 都写进工作流历史，体积与重放成本都会爆炸。更干净的切法是：**工作流管可靠结果，SSE 管实时观感**。
+巡检分析、报告生成这类任务，既要边生成边展示，又要失败可重试、结果可审计。若把每个流式 token 都写进工作流历史，体积与重放成本都会爆炸。更干净的切法是：**工作流管可靠结果，SSE 管实时观感**。
+
+<!-- more -->
 
 ## 一、两种需求冲突
 
@@ -25,7 +26,7 @@ top: false
 
 ## 二、边界划分
 
-```mermaid
+{% mermaid %}
 flowchart TB
   U[用户发起分析] --> API[业务 API]
   API --> WF[工作流: 建任务/调模型/落库]
@@ -36,7 +37,9 @@ flowchart TB
   SSE --> U
   U -->|断线重连| SSE
   SSE -->|Last-Event-ID| Bus
-```
+{% endmermaid %}
+
+> **读图：** 工作流只负责可靠落库；SSE 从总线读增量。两条链路在「进度事件 + 最终结果」汇合，而不是共用同一份 token 历史。
 
 原则：
 
@@ -46,7 +49,7 @@ flowchart TB
 
 ## 三、为什么不把 Token 存进工作流
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[把 token 存进历史] --> B[历史膨胀 GB 级]
   B --> C[replay 变慢]
@@ -54,13 +57,13 @@ flowchart TB
   A --> E[重试时重复 token 难去重]
   A --> F[敏感内容扩大存储面]
   F --> G[合规风险]
-```
+{% endmermaid %}
 
-正确做法：把「完整答案」作为 Activity 输出一次写入 DB，SSE 在 `done` 前允许丢包（刷新后以 DB 为准）。
+正确做法：把「完整答案」作为 Activity 输出一次写入 DB；SSE 在 `done` 前允许丢包，刷新后以 DB 为准。
 
 ## 四、工作流内部结构
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant W as Workflow
   participant A as AI Activity
@@ -74,11 +77,11 @@ sequenceDiagram
   A-->>W: 返回 resultId
   W->>W: 标记 done
   W->>W: 发进度事件到总线
-```
+{% endmermaid %}
 
 ## 五、幂等与防重复
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[重复点击分析] --> B{WorkflowId 已存在?}
   B -->|是| C[返回已有运行中实例]
@@ -86,15 +89,15 @@ flowchart TB
   D --> E[WorkflowId = analysis:bizId:inputHash]
   E --> F[Activity 带幂等键调模型]
   F --> G[避免超时重试双计费]
-```
+{% endmermaid %}
 
 - WorkflowId：`analysis:{bizId}:{inputHash}`
-- 同一业务重复点击返回已有运行中实例
-- Activity 调用模型时带幂等键，避免超时重试双计费
+- 同一业务重复点击，返回已有运行中实例
+- Activity 调模型时带幂等键，避免超时重试双计费
 
 ## 六、前端体验流程
 
-```mermaid
+{% mermaid %}
 stateDiagram-v2
   [*] --> 发起
   发起 --> 等待runId
@@ -107,14 +110,29 @@ stateDiagram-v2
   断线 --> 重连: 带Last-Event-ID
   重连 --> 流式接收
   校准显示 --> [*]
-```
+{% endmermaid %}
 
 1. 先建任务拿 `runId`
 2. 立刻开 SSE
 3. 本地拼接 delta；收到 `done` 再拉一次最终结果校准
 4. 断线重连从 `Last-Event-ID` 或服务端游标续传
 
-## 七、Activity 伪代码
+## 七、done 前后以谁为准
+
+流式过程中允许「观感不完整」；一旦落库成功，以 DB 为真相源。下面这张决策图把边界钉死：
+
+{% mermaid %}
+flowchart TB
+  A[前端收到帧] --> B{事件类型?}
+  B -->|delta| C[本地拼接展示<br/>可丢 可重连补]
+  B -->|done| D[拉最终结果 API]
+  D --> E[用 DB 内容覆盖本地缓冲]
+  B -->|error| F[展示失败态<br/>引导重试工作流]
+{% endmermaid %}
+
+实践上：delta 阶段不必强一致；`done` 之后必须校准一次。否则用户刷新页面会看到「半截流」和「已入库全文」两套真相。
+
+## 八、Activity 伪代码
 
 ```ts
 async function executeAnalysis(input: AnalysisInput): Promise<string> {
@@ -138,6 +156,6 @@ async function executeAnalysis(input: AnalysisInput): Promise<string> {
 }
 ```
 
-## 八、小结
+## 九、小结
 
 「流式」满足人，「工作流」满足系统。两者交汇点应是 **进度事件 + 最终落库**，而不是把 token 流塞进工作流引擎。这是巡检 AI、报告生成类功能长期可运维的关键分界。

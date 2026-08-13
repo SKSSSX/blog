@@ -10,25 +10,26 @@ tags:
 keywords: Cesium, 遥测, 无人机, 实时
 copyright: true
 date: 2026-06-08 21:30:00
-top: false
 ---
 
-在巡检或应急类三维控制台里，「飞机在不在动」往往比静态模型更打动人。本文基于一类 **Vue + Cesium + 实时通道** 的工程实践，梳理如何把设备遥测稳定地画成「活的」飞行实体。为便于讨论，文中对厂商协议字段、内网地址等做脱敏处理，只保留可复用的设计思路。
+巡检或应急三维控制台里，「飞机在不在动」往往比静态模型更抓人。本文基于一类 **Vue + Cesium + 实时通道** 的实践，梳理如何把设备遥测稳定画成「活的」飞行实体。厂商协议字段、内网地址等已脱敏，只保留可复用的设计思路。
+
+<!-- more -->
 
 ## 一、为什么「动起来」很难
 
-很多人以为「实时显示位置」就是 `setInterval` 拉坐标再 `entity.position = ...`。在演示里能跑，但放到生产会撞上四类问题：
+很多人以为「实时显示位置」就是 `setInterval` 拉坐标再 `entity.position = ...`。演示能跑，上生产会撞上四类问题：
 
-1. **消息抖动**：遥测不是匀速到达，1 秒来 30 条、下一秒来 0 条，画面会顿挫
+1. **消息抖动**：遥测不是匀速到达，1 秒 30 条、下一秒 0 条，画面会顿挫
 2. **切页失真**：标签页后台时 `setInterval` 被节流，回到前台位置「跳一大段」
 3. **多机同屏**：几十架飞机各自高频更新，主线程被回调淹没
 4. **弱网重连**：断线恢复后历史点要不要补、怎么补
 
-要解决这些，核心是把「收到消息就画」改成「**把消息喂进时间轴，让 Cesium 时钟驱动插值**」。
+关键不是「收到消息就画」，而是「**把消息喂进时间轴，让 Cesium 时钟驱动插值**」。
 
 ## 二、总体链路
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[设备/模拟器] --> B[消息中间件<br/>MQTT/AMQP]
   B --> C[业务服务<br/>落库 + 缓存最新点]
@@ -39,9 +40,11 @@ flowchart LR
   G -->|否| H[丢弃/打点]
   G -->|是| I[SampledPositionProperty]
   I --> J[Cesium Entity<br/>位置+姿态+轨迹]
-```
+{% endmermaid %}
 
-前端不必关心上游是 MQTT 还是 AMQP，只要约定一种 **Pose DTO**。这样换协议只动推送层，三维渲染层零改动。
+> **读图：** 上游协议可以换，前端只吃统一 Pose，再经有界缓冲写入 SampledPosition，由 Entity 渲染位置、姿态和轨迹。
+
+前端不必关心上游是 MQTT 还是 AMQP，只要约定一种 **Pose DTO**。换协议只动推送层，三维渲染层零改动。
 
 ## 三、Pose 归一化：统一数据入口
 
@@ -69,7 +72,7 @@ function normalizePose(msg) {
 
 **关键纪律**：
 
-- 非法坐标直接返回 `null`，调用方丢弃并打点监控「坏包率」——比 silent fail 好排查十倍
+- 非法坐标直接返回 `null`，调用方丢弃并打点「坏包率」——比 silent fail 好排查
 - 时间戳优先用设备时间，没有才退回 `Date.now()`，避免服务端转发延迟污染时间轴
 - `id` 统一字符串化，防止数字 ID 和字符串 ID 被当成两个实体
 
@@ -79,7 +82,7 @@ function normalizePose(msg) {
 
 ### 4.1 两种方案对比
 
-```mermaid
+{% mermaid %}
 flowchart TB
   subgraph bad [❌ setInterval 方案]
     B1[消息到达] --> B2[直接设 position]
@@ -93,11 +96,11 @@ flowchart TB
     G4[标签页后台] --> G5[时钟继续走]
     G5 --> G6[回到前台自动追上]
   end
-```
+{% endmermaid %}
 
 ### 4.2 SampledPositionProperty 详解
 
-Cesium 的 `SampledPositionProperty` 本质是一个「按时间戳存离散点，查询时插值」的容器：
+Cesium 的 `SampledPositionProperty` 本质是「按时间戳存离散点，查询时插值」的容器：
 
 ```js
 const prop = new Cesium.SampledPositionProperty();
@@ -127,7 +130,7 @@ function onPose(pose) {
 
 ### 4.3 为什么切页不跳
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant U as 用户
   participant T as 标签页
@@ -141,13 +144,13 @@ sequenceDiagram
   T->>C: 恢复渲染
   C->>S: 查当前时间位置
   S-->>C: 插值出正确位置(不跳)
-```
+{% endmermaid %}
 
-因为位置是「按时间戳存的离散点」，时钟走到哪就插值到哪，跟「多久没渲染」无关。
+位置是「按时间戳存的离散点」，时钟走到哪就插值到哪，跟「多久没渲染」无关。
 
 ## 五、短轨迹：有界缓存
 
-默认 `PathGraphics` 会画所有历史点，飞久了 sample 无限增长，内存和绘制都崩。
+默认 `PathGraphics` 会画所有历史点，飞久了 sample 无限增长，内存和绘制都会崩。
 
 ```js
 entity.path = {
@@ -177,7 +180,7 @@ function pruneSamples(prop) {
 
 ## 六、多机同屏性能策略
 
-```mermaid
+{% mermaid %}
 flowchart TB
   N{同屏实体数}
   N -->|< 10| A[全精细模型<br/>每帧更新]
@@ -185,7 +188,7 @@ flowchart TB
   N -->|> 50| C[聚类/合并<br/>只更新视口内]
   B --> D[requestRenderMode<br/>非交互时降帧]
   C --> D
-```
+{% endmermaid %}
 
 | 问题 | 做法 | 收益 |
 |---|---|---|
@@ -197,7 +200,7 @@ flowchart TB
 
 ## 七、弱网重连的状态机
 
-```mermaid
+{% mermaid %}
 stateDiagram-v2
   [*] --> 连接中
   连接中 --> 在线: 握手成功
@@ -207,7 +210,7 @@ stateDiagram-v2
   退避等待 --> 连接中: 退避结束
   退避等待 --> 退避等待: 继续失败(指数增长)
   在线 --> [*]: 主动关闭
-```
+{% endmermaid %}
 
 重连后要决定：**补历史点还是只追新点**。经验是：
 
@@ -218,7 +221,7 @@ stateDiagram-v2
 
 ## 八、实体生命周期管理
 
-```mermaid
+{% mermaid %}
 classDiagram
   class DroneEntityManager {
     +Map~id, Entity~ entities
@@ -245,7 +248,7 @@ classDiagram
   DroneEntityManager --> Entity : 管理
   DroneEntityManager ..> Pose : 输入
   Entity ..> Pose : 转换
-```
+{% endmermaid %}
 
 把实体的增、删、改集中在一个 Manager，组件只调 `manager.update(pose)`。好处：
 
@@ -260,6 +263,6 @@ classDiagram
 2. **时间轴插值**（SampledPosition + 时钟驱动）
 3. **有界缓存**（滑动窗口 + trailTime）
 
-协议可以换，设备可以换，这三块设计稳住了，三维观感就不会轻易崩。
+协议可以换，设备可以换，这三块稳住了，三维观感就不容易崩。
 
-后续可接：任务仅在 RUNNING 时落点、回放用同一套 SampledPosition 喂历史点，实现「实时与回放一套渲染器」——这是把这套设计延伸到时间轴上的自然做法。
+后续可接：任务仅在 RUNNING 时落点、回放用同一套 SampledPosition 喂历史点，实现「实时与回放一套渲染器」——这是把设计延伸到时间轴上的自然做法。

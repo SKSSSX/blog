@@ -2,7 +2,7 @@
 title: 业务身份与管理端身份为什么要拆开
 subtitle: OIDC 与自建后台鉴权的边界
 categories:
-  - NodeJS
+  - Nodejs
 tags:
   - 安全
   - OAuth
@@ -10,10 +10,11 @@ tags:
 keywords: Keycloak, JWT, RBAC, 身份认证
 copyright: true
 date: 2026-07-27 19:40:00
-top: false
 ---
 
 不少平台会同时存在「业务用户」和「系统管理员」。把两套人马塞进同一个登录域，看起来省事，实际会在权限模型、审计与发布节奏上互相拖累。更稳妥的做法是：**业务走企业级 OIDC，管理端走独立身份与 RBAC**。
+
+<!-- more -->
 
 ## 一、两种用户，两种风险面
 
@@ -27,7 +28,7 @@ top: false
 
 ## 二、推荐拓扑
 
-```mermaid
+{% mermaid %}
 flowchart TB
   U[业务用户] --> IdP[企业 IdP / OIDC]
   IdP --> GW[业务网关]
@@ -37,11 +38,13 @@ flowchart TB
   AdminAPI -.只调受控运维接口.-> Biz
   Note1[业务 Token 不碰管理 API]
   Note2[管理 Token 不碰业务用户数据]
-```
+{% endmermaid %}
+
+> **读图：** 业务与管理各走一套身份入口；管理端只通过窄权限接口触达业务，两边 Token 互不通用。
 
 ## 三、为什么要拆
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[混用一套身份] --> B[权限模型互相污染]
   A --> C[发布节奏互相拖]
@@ -51,11 +54,11 @@ flowchart TB
   C --> G[管理端变更等业务发版]
   D --> H[XSS 连带打穿管理端]
   E --> I[谁操作的说不清]
-```
+{% endmermaid %}
 
 ## 四、业务端：OIDC 流程
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant U as 用户
   participant FE as 业务前端
@@ -70,11 +73,11 @@ sequenceDiagram
   GW-->>FE: 业务 session/token
   FE->>GW: 后续请求带 token
   GW->>GW: 校验 + 提取 scope
-```
+{% endmermaid %}
 
 ## 五、管理端：独立 JWT + RBAC
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[管理员登录] --> B[管理 API 验密码]
   B --> C[签发 JWT 含角色]
@@ -83,7 +86,7 @@ flowchart LR
   E --> F{有权限?}
   F -->|是| G[执行运维操作]
   F -->|否| H[403]
-```
+{% endmermaid %}
 
 要点：
 
@@ -93,13 +96,13 @@ flowchart LR
 
 ## 六、常见反例
 
-```mermaid
+{% mermaid %}
 flowchart TB
   R1[反例1: 同域名 Cookie] --> E1[XSS 打穿两端]
   R2[反例2: 同 Realm 用 group 区分] --> E2[业务变更误改管理组]
   R3[反例3: 管理接口公网+同限流] --> E3[被扫到代价高]
   R4[反例4: 管理员个人令牌调业务] --> E4[离职后未收回]
-```
+{% endmermaid %}
 
 1. 前端把管理 Token 存同一域名 Cookie，业务站被 XSS 连带打穿管理端
 2. 同一 Realm 里用 group 区分管理员，业务变更误改管理组
@@ -108,13 +111,13 @@ flowchart TB
 
 ## 七、跨系统调用的正确姿势
 
-```mermaid
+{% mermaid %}
 flowchart LR
   Admin[管理服务] --> SA[服务账号<br/>窄权限 长期]
   SA --> Biz[业务受控接口]
   Biz --> Audit[审计日志]
   Note[不使用管理员个人令牌]
-```
+{% endmermaid %}
 
 - 服务账号有独立密钥，可轮换
 - 只授予「需要的几个运维接口」

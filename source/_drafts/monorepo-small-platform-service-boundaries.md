@@ -2,7 +2,7 @@
 title: 单体仓库里的小平台：前端与多后端如何分工
 subtitle: Vue、BFF、Java、Python 并存的一种切法
 categories:
-  - NodeJS
+  - Framework
 tags:
   - 架构
   - Monorepo
@@ -10,10 +10,11 @@ tags:
 keywords: Monorepo, BFF, 微服务, 架构分层
 copyright: true
 date: 2026-08-03 18:30:00
-top: false
 ---
 
 当系统同时有三维前端、实时推送、领域业务、AI 推理时，「一个后端打天下」会很快失控。用 **单体仓库 + 多服务边界** 是一种折中：代码在一起好协作，运行时仍按职责拆开。下文给一种可参考的分工，不绑定具体产品名。
+
+<!-- more -->
 
 ## 一、为什么选 Monorepo
 
@@ -29,7 +30,7 @@ top: false
 
 ## 二、分层示意
 
-```mermaid
+{% mermaid %}
 flowchart TB
   FE[业务前端 Vue/Cesium] --> GW[API Gateway]
   AF[管理前端] --> AS[管理服务]
@@ -42,7 +43,9 @@ flowchart TB
   DEV[设备] --> BROKER[MQTT Broker] --> JAVA
   BFF --> SOCK[Socket.IO]
   SOCK --> FE
-```
+{% endmermaid %}
+
+> **读图：** 前端与设备入口不同；Gateway / BFF 做聚合与实时适配，领域与 AI 各管一块，管理端独立旁路。
 
 ## 三、谁负责什么
 
@@ -58,7 +61,7 @@ flowchart TB
 ## 四、Monorepo 的目录与边界
 
 ```text
-skytrace/
+platform/
 ├── frontend/        # 业务前端
 ├── admin-frontend/  # 管理前端
 ├── gateway-java/    # API 网关
@@ -66,10 +69,10 @@ skytrace/
 ├── backend-java/    # 领域服务
 ├── backend-ai/      # AI 推理
 ├── admin-service/   # 管理服务
-├── device-sim/     # 设备模拟
-├── e2e/            # 端到端测试
-├── deploy/         # Compose 部署
-└── docs/           # 架构文档
+├── device-sim/      # 设备模拟
+├── e2e/             # 端到端测试
+├── deploy/          # Compose 部署
+└── docs/            # 架构文档
 ```
 
 **纪律**：
@@ -80,7 +83,7 @@ skytrace/
 
 ## 五、请求链路时序
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant FE as 前端
   participant GW as Gateway
@@ -95,11 +98,11 @@ sequenceDiagram
   BFF->>AI: 查关联分析结果
   AI-->>BFF: 返回
   BFF-->>FE: 聚合响应
-```
+{% endmermaid %}
 
 ## 六、实时链路时序
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant DEV as 设备
   participant BROKER as MQTT Broker
@@ -112,11 +115,11 @@ sequenceDiagram
   JAVA->>SOCK: 推送 device.telemetry
   SOCK->>FE: 广播到房间
   FE->>FE: 更新 Cesium 实体
-```
+{% endmermaid %}
 
 ## 七、变化速率分层
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[变化快: 前端交互] --> A1[周级迭代]
   B[变化中: BFF 聚合] --> B1[月级迭代]
@@ -125,13 +128,13 @@ flowchart TB
   A1 -.依赖.-> C1
   B1 -.依赖.-> C1
   A1 -.依赖.-> B1
-```
+{% endmermaid %}
 
 按变化速率切服务，是 Monorepo 不退化为「大泥球」的关键。
 
 ## 八、CI 增量构建
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[git push] --> B[检测变更目录]
   B --> C{frontend 变了?}
@@ -143,7 +146,7 @@ flowchart LR
   D --> I[部署对应服务]
   F --> I
   H --> I
-```
+{% endmermaid %}
 
 ## 九、小结
 
