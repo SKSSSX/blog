@@ -1,34 +1,86 @@
-# sanks的博客
+# sanks 的博客
 
-基于 **Hexo 8** + **NexT 8** 的静态博客。
+基于 **Hexo 8** + **NexT 8** 的静态博客源码仓库。
+
+线上站点：https://www.sanks-blog.com
+
+发布仓库：https://github.com/SKSSSX/SKSSSX.github.io
 
 ## 环境
 
-- Node.js >= 20.19（推荐本机 Node 24）
-- 仅使用 **npm**（已移除 yarn.lock）
+- Node.js >= 20.19，推荐 Node 24
+- 使用 npm 管理依赖
 
 ```bash
 npm install
 ```
 
+## 分支
+
+- `develop`：日常写文章、改配置、调整主题
+- `master`：发布前从 `develop` 合并过来的主分支
+
+常规流程：
+
+```bash
+git switch develop
+# 写文章或改配置
+git add .
+git commit -m "docs: 更新博客内容"
+
+git switch master
+git merge develop
+git push origin master
+```
+
 ## 常用命令
 
 ```bash
-# 本地预览（默认端口 3111）
+# 本地预览，默认端口 3111
 npm run dev
 
-# 清理
+# 清理生成产物
 npm run clean
 
-# 生成静态文件（同时生成本地搜索 search.xml）
+# 生成静态文件
 npm run build
+
+# 清理并重新生成
+npm run rebuild
 
 # 部署到 GitHub Pages
 npm run deploy
 
-# 一键：清理 → 生成 → 部署 → 本地预览
-npm start
+# 清理、生成并部署
+npm run publish
 ```
+
+## 发布流程
+
+部署目标在 `_config.yml` 中维护：
+
+```yaml
+deploy:
+  - type: git
+    repository: https://github.com/SKSSSX/SKSSSX.github.io.git
+    branch: master
+```
+
+发布命令：
+
+```bash
+npm run publish
+```
+
+该命令会生成静态文件并推送到 `SKSSSX/SKSSSX.github.io` 的 `master` 分支。
+
+## 功能说明
+
+- 主题使用 npm 包 `hexo-theme-next`
+- NexT 站点配置在 `_config.next.yml`
+- 本地搜索使用 `hexo-generator-searchdb` 生成 `search.xml`
+- 站点地图使用 `hexo-generator-sitemap` 和 `hexo-generator-baidu-sitemap`
+- 已移除百度主动推送插件，发布时不会再向百度提交链接
 
 ## 文章加密
 
@@ -39,24 +91,10 @@ encrypt:
   enable: true
 ```
 
-在文章 frontmatter 中添加：
+需要加密的文章在 front matter 中添加：
 
 ```yaml
 password: your_password
 abstract: Welcome to my blog, enter password to read.
 message: Welcome to my blog, enter password to read.
 ```
-
-## 主题配置
-
-主题使用 npm 包 `hexo-theme-next`，站点侧配置在仓库根目录 `_config.next.yml`。
-
-## 发布流程
-
-```bash
-hexo clean && hexo generate && hexo deploy
-```
-
-搜索使用 NexT 本地搜索（`hexo-generator-searchdb`），无需 Algolia。
-
-部署目标：`git@github.com:SKSSSX/SKSSSX.github.io.git`（`master`）。
