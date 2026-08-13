@@ -52,7 +52,7 @@ avatar:
 site_state: true
 
 social:
-  E-Mail: mailto:1270256946@qq.com || fa fa-envelope
+  E-Mail: mailto:batman_gotham@126.com || fa fa-envelope
 
 social_icons:
   enable: true
@@ -64,8 +64,6 @@ links_settings:
   layout: inline
 
 links:
-  Shen博客: http://www.shenliyang.com
-  Steven博客: https://xiaosuda.top
   Naice博客: https://blog.naice.me
 
 toc:
@@ -86,6 +84,13 @@ footer:
     enable: false
 
 index_with_subtitle: true
+
+# Homepage / list pages: use <!-- more --> as excerpt
+excerpt_description: true
+read_more_btn: true
+
+# Post footer nav: left = newer, right = older (matches homepage newest-first reading)
+post_navigation: right
 
 exturl: false
 
@@ -119,25 +124,27 @@ related_posts:
 post_edit:
   enable: false
 
-# Comments: Valine via hexo-next-valine
-valine:
+# Comments: Giscus (GitHub Discussions) via hexo-next-giscus
+# Enable Discussions + install Giscus App on the repo, then fill category_id from https://giscus.app
+comments:
+  style: tabs
+  active: giscus
+  storage: true
+  lazyload: false
+
+giscus:
   enable: true
-  appId: sgCCneH9wY92eX2UEB9Wrl4g-gzGzoHsz
-  appKey: NOA0dKCDe3V0INrgD42m9Muf
-  serverURLs:
-  placeholder: ヾﾉ≧∀≦)o来啊，快活啊!
-  avatar: mp
-  meta:
-    - nick
-    - mail
-    - link
-  pageSize: 10
-  visitor: false
-  comment_count: true
-  recordIP: false
-  enableQQ: false
-  requiredFields: []
-  lang: zh-cn
+  repo: SKSSSX/SKSSSX.github.io
+  repo_id: MDEwOlJlcG9zaXRvcnkxNDU0OTY3NjI=
+  category: Announcements
+  category_id: DIC_kwDOCKwaus4DDQfk
+  mapping: pathname
+  reactions_enabled: 1
+  emit_metadata: 0
+  theme: preferred_color_scheme
+  lang: zh-CN
+  input_position: bottom
+  loading: lazy
 
 busuanzi_count:
   enable: true
@@ -149,17 +156,31 @@ busuanzi_count:
   post_views_icon: far fa-eye
 
 algolia_search:
-  enable: true
-  hits:
-    per_page: 10
+  enable: false
 
 local_search:
-  enable: false
+  enable: true
+  top_n_per_article: 1
+  unescape: false
+  preload: false
 
 motion:
   enable: true
 
 fancybox: true
+
+# Mermaid flowcharts in posts
+mermaid:
+  enable: true
+  theme:
+    light: default
+    dark: dark
+
+# Analytics disabled (no Baidu / Google)
+google_analytics:
+  tracking_id:
+  only_pageview: false
+baidu_analytics:
 
 vendors:
   internal: local
