@@ -8,5 +8,4 @@ tags:
 keywords: JavaScript
 copyright: true
 date: {{ date }}
-top: false
 ---

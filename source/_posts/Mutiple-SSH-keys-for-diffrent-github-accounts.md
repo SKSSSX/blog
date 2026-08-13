@@ -7,7 +7,6 @@ tags:
   - Git
 keywords: Git
 copyright: true
-top: false
 date: 2020-01-05 20:01:31
 ---
 ## create different public key

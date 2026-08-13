@@ -2,7 +2,7 @@
 title: 一条 SSE 如何穿过多层网关还不卡顿
 subtitle: Nginx、API Gateway、BFF 到业务服务的流式透传要点
 categories:
-  - NodeJS
+  - Nodejs
 tags:
   - SSE
   - Gateway
@@ -10,10 +10,11 @@ tags:
 keywords: SSE, Nginx, 网关, 流式, 不缓冲
 copyright: true
 date: 2026-07-06 21:20:00
-top: false
 ---
 
-AI 对话、告警推送、长任务进度……这些场景常用 SSE。链路一旦变成「浏览器 → Nginx → Gateway → BFF → 业务服务」，任何一层默认缓冲都会让「流式」变成「最后一次性吐出」。本文总结如何把 SSE **真的流起来**。
+AI 对话、告警推送、长任务进度，这类场景常用 SSE。链路一旦变成「浏览器 → Nginx → Gateway → BFF → 业务服务」，任一层默认缓冲都会把「流式」攒成「最后一次性吐出」。下面记一遍怎么把 SSE **真的流起来**。
+
+<!-- more -->
 
 ## 一、SSE 的基本帧格式
 
@@ -30,11 +31,11 @@ event: done
 data: [DONE]
 ```
 
-每帧之间空行分隔。浏览器端 `EventSource` 或 `fetch + ReadableStream` 都能逐帧解析。
+帧与帧之间空行分隔。浏览器端用 `EventSource`，或 `fetch + ReadableStream`，都能逐帧解析。
 
 ## 二、典型链路
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant B as Browser
   participant N as Nginx
@@ -50,11 +51,13 @@ sequenceDiagram
   G-->>N: chunk
   N-->>B: chunk
   Note over N,G: 任一层 buffering 都会攒成包
-```
+{% endmermaid %}
+
+> **读图：** 浏览器到业务服务中间有多层代理；任一环缓冲，整条链路就不再「逐帧到达」。
 
 ## 三、缓冲问题定位
 
-```mermaid
+{% mermaid %}
 flowchart TB
   S[症状: 等很久突然全出来] --> R{逐层排查}
   R --> N1[Nginx proxy_buffering?]
@@ -65,7 +68,7 @@ flowchart TB
   G1 -->|是| Fix2[改为流式转发]
   F1 -->|否| Fix3[用 ReadableStream pipe]
   P1 -->|是| Fix4[绕过或加心跳]
-```
+{% endmermaid %}
 
 ## 四、各层配置要点
 
@@ -84,15 +87,15 @@ location /api/stream {
 
 ### Gateway（Spring Cloud Gateway 示意）
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[请求进入] --> B{是否 SSE?}
   B -->|是| C[流式转发 不缓冲 body]
   B -->|否| D[正常路由]
   C --> E[保持连接 透传 chunk]
-```
+{% endmermaid %}
 
-关键：不要把上游 `body` 读成完整 `String` 再转发，要用响应式/流式 API 透传。
+关键：不要把上游 `body` 读成完整 `String` 再转发，用响应式/流式 API 透传。
 
 ### BFF（NestJS 示意）
 
@@ -130,7 +133,7 @@ while (true) {
 
 ## 五、心跳保活
 
-长时间无数据的连接会被中间设备断掉。服务端定时发注释行（不触发事件）：
+长时间无数据的连接，容易被中间设备掐掉。服务端定时发注释行（不触发事件）：
 
 ```text
 : keep-alive
@@ -138,24 +141,24 @@ while (true) {
 : keep-alive
 ```
 
-浏览器 `EventSource` 会忽略注释行，但连接保持活跃。间隔建议 15-30 秒。
+浏览器 `EventSource` 会忽略注释行，连接仍保持活跃。间隔建议 15–30 秒。
 
 ## 六、鉴权怎么带
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[SSE 鉴权] --> B{方案选择}
   B --> C[短时 ticket 放 query<br/>一次性 短TTL]
   B --> D[fetch 流式读<br/>带 Authorization Header]
   C --> E[服务端校验后销毁 ticket]
   D --> F[标准 Bearer Token]
-```
+{% endmermaid %}
 
-不要把长期 Refresh Token 塞进 URL——日志、浏览器历史都会留痕。
+不要把长期 Refresh Token 塞进 URL——访问日志、浏览器历史都会留痕。
 
 ## 七、断线重连
 
-```mermaid
+{% mermaid %}
 stateDiagram-v2
   [*] --> 已连接
   已连接 --> 断开: 网络抖动/超时
@@ -163,7 +166,7 @@ stateDiagram-v2
   重连中 --> 已连接: 成功(带 Last-Event-ID)
   重连中 --> 重连中: 失败(指数退避)
   已连接 --> [*]: 主动关闭
-```
+{% endmermaid %}
 
 - `EventSource` 原生支持 `Last-Event-ID`，服务端可据此续传
 - `fetch` 方案需自己维护游标，断线后带上 `cursor` 参数
@@ -180,4 +183,4 @@ stateDiagram-v2
 
 ## 九、小结
 
-SSE「卡顿」多半不是业务模型慢，而是 **代理把流攒成了包**。从最外层 Nginx 往内逐层确认「不缓冲、可心跳、超时匹配」，通常就能恢复逐 token/逐事件的体验。
+SSE「卡顿」多半不是业务模型慢，而是 **代理把流攒成了包**。从最外层 Nginx 往内逐层确认「不缓冲、可心跳、超时匹配」，通常就能恢复逐 token / 逐事件的体验。

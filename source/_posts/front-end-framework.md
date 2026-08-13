@@ -17,7 +17,6 @@ copyright: true
 # password: sanks_lock
 # abstract: Welcome to my blog, enter password to read.
 # message: Welcome to my blog, enter password to read.
-top: false
 date: 2020-06-25 19:38:37
 ---
 {% note info %}

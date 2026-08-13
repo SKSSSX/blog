@@ -2,7 +2,7 @@
 title: 证据只存对象键：附件库到证据中心的演进
 subtitle: 用 object key 做真相源的数据治理实践
 categories:
-  - NodeJS
+  - Nodejs
 tags:
   - 对象存储
   - 数据治理
@@ -10,25 +10,28 @@ tags:
 keywords: MinIO, 对象存储, 证据中心, 数据迁移
 copyright: true
 date: 2026-08-10 20:40:00
-top: false
 ---
 
-早期系统常把附件 URL 直接存进业务表。时间一长会出现：链路域名变更、临时签名过期、无法统一鉴权与审计。更稳的模型是：**库里只存对象键（object key）与元数据，读取时再签发短期访问**，并逐步演进成「证据中心」。
+早期系统常把附件 URL 直接写进业务表。时间一长就会碰到：链路域名变更、临时签名过期、鉴权与审计无法统一。更稳的模型是：**库里只存对象键（object key）与元数据，读取时再签发短期访问**，并逐步演进成「证据中心」。
+
+<!-- more -->
 
 ## 一、从附件到证据的演进
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[v1 存完整 URL] --> B[v2 存 bucket + object key]
   B --> C[v3 元数据: 哈希/标签/来源任务]
   C --> D[v4 归档/复核/衍生件工作流]
-```
+{% endmermaid %}
 
-每一步都用迁移脚本批处理，旧字段只读兼容一段时间。
+> **读图：** 从「存字符串 URL」到「存 key + 元数据 + 工作流」，每一步都用迁移脚本批处理，旧字段只读兼容一段时间。
+
+演进可以分阶段推进，不必一次到位。先把真相源从 URL 换成 key，再补元数据与生命周期，风险更可控。
 
 ## 二、为什么 key 是真相源
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[存完整 URL] --> B[域名变更 URL 失效]
   A --> C[临时签名过期]
@@ -38,7 +41,7 @@ flowchart TB
   F --> H[签发时统一鉴权]
   F --> I[哈希校验防篡改]
   F --> J[衍生件不复制外链]
-```
+{% endmermaid %}
 
 好处：
 
@@ -49,7 +52,7 @@ flowchart TB
 
 ## 三、读取路径
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant FE as 前端
   participant API as 业务 API
@@ -60,7 +63,7 @@ sequenceDiagram
   ST-->>API: 返回 presigned URL
   API-->>FE: 返回签名 URL
   FE->>ST: 直连下载/播放
-```
+{% endmermaid %}
 
 1. 前端要预览 → 调业务 API
 2. 服务端鉴权 + 审计
@@ -69,7 +72,7 @@ sequenceDiagram
 
 ## 四、上传路径
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[前端] --> B{文件大小}
   B -->|小文件| C[预签名 PUT 直传]
@@ -78,13 +81,13 @@ flowchart LR
   D --> E
   E --> F[回调业务 API 存 key + 元数据]
   F --> G[完成]
-```
+{% endmermaid %}
 
-上传则用预签名 PUT 或经网关中转（看文件大小与网络环境）。
+上传用预签名 PUT 或经网关中转，取决于文件大小与网络环境。无论哪条路，业务库最终只落 key 与元数据。
 
 ## 五、证据生命周期
 
-```mermaid
+{% mermaid %}
 stateDiagram-v2
   [*] --> 上传中
   上传中 --> 待归档: 上传完成
@@ -93,11 +96,13 @@ stateDiagram-v2
   待复核 --> 已复核: 人工确认
   已复核 --> [*]
   已归档 --> [*]: 过期清理
-```
+{% endmermaid %}
+
+「证据」相对普通附件，多的是归档、复核、过期清理这些状态。key 做真相源之后，这些状态才有稳定的挂载点。
 
 ## 六、迁移步骤
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[迁移准备] --> B[脚本: 解析旧 URL 提取 key]
   B --> C[双写: 新字段 + 旧字段]
@@ -105,7 +110,7 @@ flowchart TB
   D --> E[切读路径到新字段]
   E --> F[验证: 校验失败清单]
   F --> G[下线旧字段]
-```
+{% endmermaid %}
 
 注意：
 
@@ -113,9 +118,26 @@ flowchart TB
 - 记录校验失败清单，避免静默丢证据
 - 归档任务可异步：热数据与冷数据分层
 
+切读是风险最高的一步，需要明确「什么时候还能回滚」：
+
+{% mermaid %}
+flowchart TB
+  A[准备切读] --> B{失败清单已清空?}
+  B -->|否| C[继续回填/人工核对]
+  C --> B
+  B -->|是| D[按租户/项目灰度切读]
+  D --> E{抽样校验通过?}
+  E -->|否| F[回滚读路径到旧字段]
+  F --> C
+  E -->|是| G[全量切读]
+  G --> H[观察窗口后再下线旧字段]
+{% endmermaid %}
+
+灰度切读比「全站一天切完」稳得多：先按租户或项目放量，抽样校验不过就回滚读路径；旧字段先只读保留，观察窗口过了再下线。这样即使解析脚本漏边角 case，也不会一次性放大成全站证据不可读。
+
 ## 七、衍生件管理
 
-```mermaid
+{% mermaid %}
 flowchart LR
   A[原始证据 key] --> B[预览缩略图]
   A --> C[转码件]
@@ -124,7 +146,7 @@ flowchart LR
   C --> E
   D --> E
   E --> F[同一证据 ID 下多版本]
-```
+{% endmermaid %}
 
 衍生件用同一证据 ID 关联，不复制外链，避免「哪个才是原件」的歧义。
 

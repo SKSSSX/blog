@@ -2,7 +2,7 @@
 title: 视觉检测如何接入告警闭环
 subtitle: 从帧结果到可处理工单的事件化设计
 categories:
-  - NodeJS
+  - Framework
 tags:
   - AI
   - 计算机视觉
@@ -10,10 +10,11 @@ tags:
 keywords: YOLO, 告警, 消息队列, 视觉检测
 copyright: true
 date: 2026-08-08 19:55:00
-top: false
 ---
 
-巡检场景里，模型打出「框和标签」只是起点；业务要的是 **可分派、可抑制、可追溯的告警**。把视觉服务直接耦合进业务库表，不如变成「检测事件 → 消息总线 → 告警服务」的闭环。
+巡检场景里，模型打出「框和标签」只是起点；业务要的是 **可分派、可抑制、可追溯的告警**。与其把视觉服务直接耦合进业务库表，不如做成「检测事件 → 消息总线 → 告警服务」的闭环。
+
+<!-- more -->
 
 ## 一、从检测结果到告警的鸿沟
 
@@ -27,7 +28,7 @@ top: false
 
 ## 二、闭环图
 
-```mermaid
+{% mermaid %}
 flowchart LR
   V[视频帧/图片] --> D[检测服务]
   D --> E[标准化 DetectionEvent]
@@ -37,11 +38,15 @@ flowchart LR
   A --> N[通知/推送]
   A --> U[人工确认/误报]
   U --> A
-```
+{% endmermaid %}
+
+> **读图：** 检测服务只产出标准化事件，经消息队列交给告警服务；人工确认/误报再回到告警侧，形成可运营闭环。
+
+消息队列把模型世界和业务世界拆开：检测侧专注推理与事件 schema，告警侧专注抑制、分派和确认。两边可以独立扩缩容，也不会互相拖垮。
 
 ## 三、DetectionEvent 最小字段
 
-```mermaid
+{% mermaid %}
 classDiagram
   class DetectionEvent {
     +String source
@@ -63,7 +68,7 @@ classDiagram
     +String coordSystem
   }
   DetectionEvent --> BBox : 包含
-```
+{% endmermaid %}
 
 - `source`：设备/任务/帧时间
 - `label` / `score`
@@ -75,7 +80,7 @@ classDiagram
 
 ## 四、检测服务内部流程
 
-```mermaid
+{% mermaid %}
 sequenceDiagram
   participant V as 视频流
   participant D as 检测服务
@@ -88,24 +93,24 @@ sequenceDiagram
   D->>D: 后处理(NMS/过滤)
   D->>D: 包装 DetectionEvent
   D->>Q: 发布事件
-```
+{% endmermaid %}
 
 ## 五、Mock 与真权重
 
-```mermaid
+{% mermaid %}
 flowchart TB
   A[开发期] --> B[Mock 检测器<br/>固定 bbox]
   B --> C[链路可测]
   D[预发] --> E[真权重模型]
   E --> F[事件 schema 不变]
   F --> G[前端/告警无感切换]
-```
+{% endmermaid %}
 
 开发期用 mock 检测器保持链路可测；预发再挂真权重。**事件 schema 保持不变**，避免前端与告警服务被模型细节绑死。
 
 ## 六、告警服务内部处理
 
-```mermaid
+{% mermaid %}
 flowchart TB
   E[DetectionEvent] --> R{重复检测?}
   R -->|是 同目标短时间| S[抑制]
@@ -117,7 +122,7 @@ flowchart TB
   W -->|确认| C[闭环]
   W -->|误报| F[反馈]
   F --> M[反哺规则/数据集]
-```
+{% endmermaid %}
 
 ## 七、抑制与确认策略
 
@@ -128,9 +133,24 @@ flowchart TB
 | 人工误报反馈 | 反哺规则或微调数据集 |
 | 围栏过滤 | 围栏外丢弃，减少噪声 |
 
+实际落地时，抑制往往比「创建工单」更重要——否则每帧一个框会把告警中心打爆。下面这张决策图把常见分支收一下：
+
+{% mermaid %}
+flowchart TB
+  E[DetectionEvent] --> S{score ≥ 阈值?}
+  S -->|否| X[丢弃]
+  S -->|是| D{同设备+同标签<br/>在时间窗内?}
+  D -->|是| Y[抑制/合并计数]
+  D -->|否| G{在地理围栏内?}
+  G -->|否| X
+  G -->|是| C[创建或升级告警单]
+{% endmermaid %}
+
+顺序建议固定：先阈值，再时间窗去重，再围栏。阈值过滤掉噪声；去重避免刷屏；围栏决定「要不要进业务视野」。确认与误报则走状态机，不要塞回检测服务。
+
 ## 八、告警状态机
 
-```mermaid
+{% mermaid %}
 stateDiagram-v2
   [*] --> 待处理: 新告警
   待处理 --> 处理中: 分派
@@ -140,7 +160,7 @@ stateDiagram-v2
   误报 --> [*]
   待处理 --> 超时: 超时升级
   超时 --> 处理中: 重新分派
-```
+{% endmermaid %}
 
 ## 九、小结
 

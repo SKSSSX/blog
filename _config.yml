@@ -5,18 +5,18 @@
 # Site
 title: sanks的博客
 subtitle: 知识付诸行动才有转换为能力的效果
-description: 对于JavaScript(ES6)、VUE、React、NodeJS、等相关技术的实战经验分享
+description: 分享前端工程、三维 GIS、实时推送与全栈架构的实战笔记——Vue、Cesium、Node.js、SSE/WebRTC 等
 keywords:
-  - javascript
+  - JavaScript
+  - Vue
+  - Cesium
+  - GIS
+  - Nodejs
+  - SSE
+  - WebRTC
+  - 架构
+  - 前端工程化
   - hexo
-  - ES6
-  - VUE
-  - axios
-  - promise
-  - permission
-  - 回调地狱
-  - Element-UI
-  - NodeJS
 author: sanks
 language: zh-CN
 timezone: Asia/Shanghai
@@ -76,6 +76,13 @@ index_generator:
   per_page: 10
   order_by: -date
 
+# Archive pages
+archive_generator:
+  per_page: 10
+  yearly: true
+  monthly: true
+  order_by: -date
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -111,22 +118,12 @@ server:
   compress: true
   port: 3111
 
-# Algolia（索引写入用 adminApiKey / 环境变量 ALGOLIA_ADMIN_API_KEY）
-algolia:
-  appId: "HRORNW2LY2"
-  apiKey: "ded44ecb6cb09def6a2a97166489710c"
-  adminApiKey: "6a11a6dad4c8ffe9535d7ce540fb9271"
-  chunkSize: 5000
-  indexName: "blog"
-  fields:
-    - content:strip:truncate,0,500
-    - excerpt:strip
-    - gallery
-    - permalink
-    - photos
-    - slug
-    - tags
-    - title
+# Local search index (hexo-generator-searchdb)
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
 
 # RSS
 feed:
