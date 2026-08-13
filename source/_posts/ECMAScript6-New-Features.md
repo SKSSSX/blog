@@ -7,7 +7,6 @@ tags:
   - JavaScript
 keywords: JavaScript
 copyright: true
-top: false
 date: 2019-05-18 18:26:14
 ---
 {% blockquote %}

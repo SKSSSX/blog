@@ -7,7 +7,6 @@ tags:
   - React
 keywords: React
 copyright: true
-top: false
 date: 2019-03-04 15:13:00
 photos:
   - /create-react-app-simple/logo.svg

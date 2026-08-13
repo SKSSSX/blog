@@ -12,7 +12,6 @@ keywords:
   - Throttle
   - JavaScript
 copyright: true
-top: false
 date: 2020-05-20 23:40:45
 ---
 
