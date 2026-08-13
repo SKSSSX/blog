@@ -11,7 +11,9 @@
     "clean": "hexo clean",
     "build": "hexo generate",
     "deploy": "hexo deploy",
-    "start": "hexo clean && hexo generate && hexo deploy && npm run dev"
+    "rebuild": "hexo clean && hexo generate",
+    "publish": "hexo clean && hexo generate && hexo deploy",
+    "start": "npm run dev"
   },
   "engines": {
     "node": ">=20.19.0"
