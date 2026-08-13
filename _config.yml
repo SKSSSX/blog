@@ -109,7 +109,7 @@ theme: next
 # Deployment
 deploy:
   - type: git
-    repository: git@github.com:SKSSSX/SKSSSX.github.io.git
+    repository: https://github.com/SKSSSX/SKSSSX.github.io.git
     branch: master
   - type: baidu_url_submitter
 
