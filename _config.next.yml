@@ -116,6 +116,14 @@ bookmark:
 github_banner:
   enable: false
 
+# Donate / reward (文章底部赞赏二维码)
+reward_settings:
+  enable: true
+  animation: false
+
+reward:
+  wechatpay: /images/wechatpay.jpg
+
 follow_me:
 
 related_posts:
